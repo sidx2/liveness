@@ -1,0 +1,77 @@
+$primary-color: #3498db;
+$background-color: #ecf0f1;
+$font-family: 'Helvetica Neue', sans-serif;
+$button-radius: 30px;
+
+#videoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $background-color;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+    #qrVideo {
+        height: 100%;
+        width: 100%;
+    }
+}
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+        background: $primary-color;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 10px 10px;
+        font-size: 1.2rem;
+        font-family: $font-family;
+        border-radius: $button-radius;
+        cursor: pointer;
+        transition: background 0.5s ease, transform 0.4s ease;
+    
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+}
+
+hr {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+
+}
+
+h1 {
+    font-family: $font-family;
+    text-align: center;
+    color: $primary-color;
+    font-size: 2em;
+    margin: 20px 0;
+}
+
+#file-selector {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid $primary-color;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+#file-qr-result {
+    font-family: $font-family;
+    font-size: 1.2em;
+    color: $primary-color;
+    display: inline-block;
+    margin-left: 10px;
+}

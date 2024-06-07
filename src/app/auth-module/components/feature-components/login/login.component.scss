@@ -1,0 +1,79 @@
+$primary-color: #3498db;
+$background-color: #ecf0f1;
+$font-family: 'Helvetica Neue', sans-serif;
+$box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; // Full viewport height
+  background-color: $background-color;
+
+  .login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: $box-shadow;
+
+    .p-fluid {
+      width: 100%;
+
+      .p-floatLabel {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+
+        label {
+          color: $primary-color;
+          font-size: 1em;
+          margin-bottom: 0.5rem;
+        }
+
+        input {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid $primary-color;
+          border-radius: 5px;
+          font-size: 1em;
+          transition: all 0.3s ease;
+          box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+
+          &:focus {
+            border-color: darken($primary-color, 10%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        .errMsg {
+          color: red;
+          font-size: 0.9em;
+          margin-top: 5px;
+        }
+      }
+
+      .p-button {
+        background: linear-gradient(45deg, $primary-color, lighten($primary-color, 10%));
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+        width: 100%;
+
+        &:hover {
+          background: linear-gradient(45deg, lighten($primary-color, 10%), $primary-color);
+          transform: translateY(-2px);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+<div class="form-container">
+  <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()" class="user-form">
+    <label for="name" class="form-label">Name</label>
+    <input formControlName="name" id="name" type="text" class="form-input">
+
+    <label for="login" class="form-label">Login</label>
+    <input formControlName="login" id="login" type="text" class="form-input">
+
+    <label for="password" class="form-label">Password</label>
+    <input formControlName="password" id="password" type="password" class="form-input">
+
+    <!-- <label for="attributeSelect" class="form-label">Attribute</label>
+    <div class="input-group">
+      <select formControlName="attributeSelect" id="attributeSelect" class="form-select">
+        <option *ngFor="let attr of attributes" [value]="attr">{{ attr }}</option>
+      </select>
+      <button type="button" (click)="addAttribute()" class="add-button">Add Attribute</button>
+    </div> -->
+
+    <!-- <div *ngFor="let attr of selectedAttributes" class="attribute-group">
+      <label class="form-label">{{ attr }}</label>
+      <div class="input-group">
+        <select multiple (change)="updateAttributeOptions(attr, $event)" class="form-select">
+          <option *ngFor="let option of attributeOptions[attr]" [value]="option">{{ option }}</option>
+        </select>
+      </div>
+      <ul class="options-list">
+        <li *ngFor="let option of selectedAttributeOptions[attr]" class="option-item">{{ option }}</li>
+      </ul>
+    </div> -->
+
+    <ng-select [items]="scopes" bindLabel="name" bindValue="id" [multiple]="true" formControlName="scope">
+    </ng-select>
+
+    <ng-select [items]="ips" bindLabel="name" bindValue="id" [multiple]="true" formControlName="ip">
+    </ng-select>
+
+    <!-- <label for="ipInput" class="form-label">IP</label>
+    <div class="input-group">
+      <input formControlName="ipInput" id="ipInput" type="text" class="form-input">
+      <button type="button" (click)="addIP()" class="add-button">Add IP</button>
+    </div>
+    <ul class="ip-list">
+      <li *ngFor="let ip of ip" class="ip-item">{{ ip }}</li>
+    </ul> -->
+
+    <button type="submit" class="submit-button">Add User</button>
+  </form>
+</div>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Login</td>
+        <td>Password</td>
+        <td>Scope</td>
+        <td>IP</td>
+        <td>Actions</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <ng-container *ngIf="user._id.$oid !== editing; else elseBlock">
+          <td>{{ user.name }}</td>
+          <td>{{ user.login }}</td>
+          <td>{{ user.password }}</td>
+          <td>{{ user.scope }}</td>
+          <td>{{ user.ip }} </td>
+          <td>
+            <button (click)="onEdit(user._id.$oid)">Update</button>
+            <button (click)="onDelete(user._id)">Delete</button>
+          </td>
+        </ng-container>
+        <ng-template #elseBlock [formGroup]="editUserForm">
+          <td>
+            <label for="name" class="form-label">Name</label>
+            <input formControlName="name" id="name" type="text" class="form-input">
+
+          </td>
+          <td>
+            <label for="login" class="form-label">Login</label>
+            <input formControlName="login" id="login" type="text" class="form-input">
+
+          </td>
+          <td>
+            <label for="password" class="form-label">Password</label>
+            <input formControlName="password" id="password" type="password" class="form-input">
+
+          </td>
+          <!--  -->
+          <!-- <td>
+            <div *ngFor="let attr of attributes" class="attribute-group">
+              <label class="form-label">{{ attr }}</label>
+              <div class="input-group">
+                <select multiple (change)="updateAttributeOptionsEditing(attr, $event)" class="form-select">
+                  <option *ngFor="let option of attributeOptions[attr]" [value]="option">{{ option }}</option>
+                </select>
+              </div>
+              <ul class="options-list">
+                <li *ngFor="let option of selectedAttributeOptionsEditing[attr]" class="option-item">{{ option }}</li>
+              </ul>
+            </div>
+
+            <label for="ipInput" class="form-label">IP</label>
+            <div class="input-group">
+              <input formControlName="ipInput" id="ipInput" type="text" class="form-input">
+              <button type="button" (click)="addIPEditing()" class="add-button">Add IP</button>
+            </div>
+            <ul class="ip-list">
+              <li *ngFor="let ip of editingIp" class="ip-item">{{ ip }}</li>
+            </ul>
+          </td> -->
+          <td>
+            <ng-select [items]="scopes" bindLabel="name" bindValue="id" [multiple]="true" formControlName="scope">
+            </ng-select>
+        
+           
+
+          </td>
+          <td>
+            <ng-select [items]="ips" bindLabel="name" bindValue="id" [multiple]="true" formControlName="ip">
+            </ng-select>
+          </td>
+          <td>
+            <button (click)="onCancel()">Cancel</button>
+            <button (click)="onDone()">Done</button>
+          </td>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,98 @@
+<div class="form-container">
+    <form class="user-form" [formGroup]="assignmentForm" (submit)="onSubmit()">
+        <label for="name" class="form-label">Assignment Name</label>
+        <input formControlName="name" id="name" type="text" class="form-input">
+
+        <label for="description" class="form-label">Description</label>
+        <input formControlName="description" id="desc" type="text" class="form-input">
+
+        <label for="Nationality" class="form-label">Nationality</label>
+        <ng-select formControlName="Nationality" [items]="attributeOptions['Nationality']" bindLabel="name"
+            bindValue="id" [multiple]="true">
+        </ng-select>
+
+        <label for="gender" class="form-label">gender</label>
+        <ng-select formControlName="gender" [items]="attributeOptions['gender']" bindLabel="name" bindValue="id"
+            [multiple]="true">
+        </ng-select>
+
+        <label for="Location" class="form-label">Location</label>
+        <ng-select formControlName="Location" [items]="attributeOptions['Location']" bindLabel="name" bindValue="id"
+            [multiple]="true">
+        </ng-select>
+
+        <label for="Religion" class="form-label">Religion</label>
+        <ng-select formControlName="Religion" [items]="attributeOptions['Religion']" bindLabel="name" bindValue="id"
+            [multiple]="true">
+        </ng-select>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Nationality</td>
+                <td>gender</td>
+                <td>Location</td>
+                <td>Religion</td>
+                <td>Actons</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let assignment of assignments">
+                <ng-container *ngIf="assignment._id.$oid !== editing; else elseBlock">
+                    <td>{{ assignment.name }}</td>
+                    <td>{{ assignment.description }}</td>
+                    <td>{{ assignment.Nationality }}</td>
+                    <td>{{ assignment.gender }}</td>
+                    <td>{{ assignment.Location }}</td>
+                    <td>{{ assignment.Religion }}</td>
+                    <td>
+                        <button (click)="onEdit(assignment._id.$oid)">Update</button>
+                        <button (click)="onDelete(assignment._id.$oid)">Delete</button>
+                    </td>
+                </ng-container>
+                <ng-template #elseBlock [formGroup]="editAssignmentForm">
+                    <td>
+                        <input formControlName="name" id="name" type="text" class="form-input">
+
+                    </td>
+                    <td>
+                        <input formControlName="description" id="desc" type="text" class="form-input">
+
+                    </td>
+                    <td>
+                        <ng-select formControlName="Nationality" [items]="attributeOptions['Nationality']"
+                            bindLabel="name" bindValue="id" [multiple]="true">
+                        </ng-select>
+                    </td>
+                    <!--  -->
+                    <td>
+                        <ng-select formControlName="gender" [items]="attributeOptions['gender']" bindLabel="name"
+                            bindValue="id" [multiple]="true">
+                        </ng-select>
+                    </td>
+                    <td>
+                        <ng-select formControlName="Location" [items]="attributeOptions['Location']" bindLabel="name"
+                            bindValue="id" [multiple]="true">
+                        </ng-select>
+                    </td>
+                    <td>
+                        <ng-select formControlName="Religion" [items]="attributeOptions['Religion']" bindLabel="name"
+                            bindValue="id" [multiple]="true">
+                        </ng-select>
+                    </td>
+                    <td>
+                        <button (click)="onCancel()">Cancel</button>
+                        <button (click)="onDone()">Done</button>
+                    </td>
+                </ng-template>
+            </tr>
+        </tbody>
+    </table>
+</div>

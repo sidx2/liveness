@@ -1,0 +1,19 @@
+<div id="videoContainer">
+    <video id="qrVideo"></video>
+</div>
+
+<div class="btn">
+
+    <button (click)="toggleScanner()" *ngIf="isScannerOn; else scannerOff">Stop</button>
+    <ng-template #scannerOff>
+        <button (click)="toggleScanner()">Start</button>
+    </ng-template>
+    
+    <button routerLink="/">Go Back</button>
+</div>
+<!-- <hr>
+
+<h1>Scan from File:</h1>
+<input type="file" id="file-selector">
+<b>Detected QR code: </b>
+<span id="file-qr-result">None</span> -->

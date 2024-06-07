@@ -1,0 +1,161 @@
+// Variables
+$primary-color: #007bff;
+$secondary-color: rgb(212, 212, 212);
+$light-gray: rgb(248, 249, 250);
+$medium-gray: #e9ecef;
+$dark-gray: #343a40;
+$border-radius: 5px;
+
+$primary-color: #007bff;
+$medium-gray: #e9ecef;
+$dark-gray: #343a40;
+$border-radius: 5px;
+
+// Form Container
+.form-container {
+  background-color: $light-gray;
+  padding: 20px;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Arial, sans-serif';
+
+  .user-form {
+    display: flex;
+    flex-direction: column;
+    
+    .form-label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: $dark-gray;
+    }
+
+    .form-input {
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid $medium-gray;
+      border-radius: $border-radius;
+      font-size: 16px;
+      outline: none;
+
+      &:focus {
+        border-color: $secondary-color;
+        box-shadow: 0 0 5px rgba($secondary-color, 0.5);
+      }
+    }
+
+    ng-select {
+      margin-bottom: 20px;
+
+      .ng-select-container {
+        border-radius: $border-radius;
+        border: 1px solid $medium-gray;
+        &:focus-within {
+          border-color: $secondary-color;
+          box-shadow: 0 0 5px rgba($secondary-color, 0.5);
+        }
+      }
+    }
+
+    .add-button {
+      background-color: $primary-color;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+
+    button[type="submit"] {
+      background-color: $primary-color;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+}
+
+// Table
+// Table
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: 'Arial, sans-serif';
+  
+    thead {
+      background-color: $dark-gray;
+      color: white;
+  
+      td {
+        padding: 10px;
+        text-align: left;
+        font-weight: bold;
+      }
+    }
+  
+    tbody {
+      tr {
+        &:nth-child(even) {
+          background-color: $medium-gray;
+        }
+  
+        td {
+          padding: 10px;
+          border-bottom: 1px solid #dee2e6;
+  
+          .form-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: $border-radius;
+          }
+  
+          ng-select {
+  
+            .ng-select-container {
+              border-radius: $border-radius;
+              border: 1px solid #ced4da;
+            }
+          }
+        }
+  
+        button {
+          background-color: $primary-color;
+          color: white;
+          padding: 5px 10px;
+          border: none;
+          border-radius: $border-radius;
+          cursor: pointer;
+          transition: background-color 0.3s;
+          margin-right: 5px;
+  
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+  
+          &.cancel-button {
+            background-color: #6c757d;
+  
+            &:hover {
+              background-color: darken(#6c757d, 10%);
+            }
+          }
+        }
+      }
+    }
+  }

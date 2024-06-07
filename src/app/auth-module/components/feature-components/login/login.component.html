@@ -1,0 +1,25 @@
+<div class="container">
+
+  <form class="login-form" [formGroup]="loginForm" (submit)="onFormSubmit()">
+    <div class="p-fluid">
+      <div class="p-floatLabel">
+        <label for="username">Username</label>
+        <input id="username" formControlName="username" type="username" class="p-field p-inputtext-lg" pInputText>
+        <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)" class="errMsg">
+          
+        </div>
+      </div>
+      
+      <div class="p-floatLabel">
+      <label for="password">Password</label>
+      <input id="password" formControlName="password" type="password" class="p-field p-inputtext-lg" pInputText>
+      <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="errMsg">
+        
+      </div>
+    </div>
+    
+    <button type="submit" class="p-button">Login</button>
+  </div>
+</form>
+
+</div>
