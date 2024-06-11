@@ -5,42 +5,13 @@ $button-radius: 30px;
 $hover-color: darken($primary-color, 10%);
 $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
-// Navbar
-.navbar {
-  display: flex;
-  justify-content: flex-end;
-  padding: 15px;
-  background-color: $background-color;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  .logout-button {
-    background: linear-gradient(45deg, $primary-color, lighten($primary-color, 10%));
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    font-family: $font-family;
-    border-radius: $button-radius;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-
-    &:hover {
-      background: linear-gradient(45deg, lighten($primary-color, 10%), $primary-color);
-      transform: scale(1.05);
-    }
-
-    &:active {
-      transform: scale(0.95);
-    }
-  }
-}
-
 // Welcome Container
 .welcome-container {
+  position: relative; // Allow absolute positioning of child elements
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; // Align items at the top
   height: 100vh; // Make sure it occupies the full height of the viewport
   width: 100%;
   background-color: $background-color;
@@ -49,11 +20,28 @@ $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   box-shadow: $box-shadow;
   margin: auto;
 
-  .links {
-    display: flex;
-    justify-content: space-around;
+  h1 {
     width: 100%;
-    margin-bottom: 20px;
+    text-align: center;
+    font-size: 3em;
+    font-family: "Helvetica Neue", sans-serif;
+    text-align: center;
+    color: #3498db;
+    margin: 20px 0;
+  }
+  
+  .links {
+    // position: absolute; // Position the links absolutely within the container
+    top: 0; // Align at the top
+    left: 0; // Align at the right
+    display: flex;
+    // flex-direction: row; // Default is row, so no need to specify
+    align-items: center;
+    margin: 20px; // Adjust margin for spacing from the container edges
+
+    a {
+      text-decoration: none;
+    }
 
     .liveness, .qr {
       display: flex;
@@ -61,26 +49,24 @@ $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       align-items: center;
       text-align: center;
       transition: transform 0.3s ease;
-      flex: 1; // Make them grow and take up equal space
-      max-width: 45%; // Limit their maximum width to maintain some padding
-      margin: 0 10px; // Add some margin for spacing
+      max-width: 65%; // Limit their maximum width to maintain some padding
+      margin-left: 20px; // Add margin for spacing between the items
+
+      &:first-child {
+        margin-left: 0; // No left margin for the first child
+      }
 
       &:hover {
         transform: scale(1.05);
       }
 
       img {
-        width: 80%; // Adjusted to occupy more space
+        width: 350px; // Adjusted to occupy more space
         height: auto; // Maintain aspect ratio
         margin-bottom: 10px;
         border-radius: 10px;
         box-shadow: $box-shadow;
         transition: box-shadow 0.3s ease, transform 0.3s ease;
-
-        // &:hover {
-        //   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        //   transform: scale(1.05);
-        // }
       }
 
       .nav-link {

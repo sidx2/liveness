@@ -20,7 +20,6 @@ export class Qr2Component implements OnInit {
   constructor(
     private qrs: QrService,
     private toastr: ToastrService,
-    private cdr: ChangeDetectorRef,
     private router: Router,
   ) { }
 
@@ -28,7 +27,7 @@ export class Qr2Component implements OnInit {
     if (this.isScannerOn) {
       this.scanner.stop();
     } else this.scanner.start();
-    this.isScannerOn = !this.isScannerOn
+    this.isScannerOn = !this.isScannerOn;
   }
 
   ngOnInit(): void {
@@ -158,5 +157,11 @@ export class Qr2Component implements OnInit {
     // });
   }
 
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.scanner.stop();
+    this.isScannerOn = false;
+  }
   
 }

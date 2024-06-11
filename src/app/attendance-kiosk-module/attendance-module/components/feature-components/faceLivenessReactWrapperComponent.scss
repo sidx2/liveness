@@ -1,16 +1,20 @@
 span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 10px;
+
 }
 
 #faceLivenessDetectorContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
     // height: 70vh;
-    width: 60vw;
+    width: 50vw;
+    margin: 10px;
+
     // overflow: hidden;
 }

@@ -5,21 +5,36 @@ $button-radius: 30px;
 
 #videoContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: $background-color;
+    // background-color: $background-color;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    // box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    margin: 10px;
 
     #qrVideo {
         height: 100%;
-        width: 100%;
+        width: 60%;
+
+        video {
+            width: 100%;
+            height: 100%;
+
+            object-fit: inherit !important;
+            overflow-clip-margin: inherit !important;
+            overflow: inherit !important;
+        }
     }
 }
+
+
+
 .btn {
     display: flex;
     justify-content: center;
     align-items: center;
+
     button {
         background: $primary-color;
         color: white;
@@ -31,7 +46,7 @@ $button-radius: 30px;
         border-radius: $button-radius;
         cursor: pointer;
         transition: background 0.5s ease, transform 0.4s ease;
-    
+
         &:hover {
             opacity: 0.9;
         }

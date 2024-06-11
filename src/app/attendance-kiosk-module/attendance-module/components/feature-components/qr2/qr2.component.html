@@ -1,15 +1,15 @@
 <div id="videoContainer">
+    <h1>Please scan your QR Code</h1>
     <video id="qrVideo"></video>
-</div>
-
-<div class="btn">
-
-    <button (click)="toggleScanner()" *ngIf="isScannerOn; else scannerOff">Stop</button>
-    <ng-template #scannerOff>
-        <button (click)="toggleScanner()">Start</button>
-    </ng-template>
     
-    <button routerLink="/">Go Back</button>
+    <div class="btn">
+        <button (click)="toggleScanner()" *ngIf="isScannerOn; else scannerOff">Stop</button>
+        <ng-template #scannerOff>
+            <button (click)="toggleScanner()">Start</button>
+        </ng-template>
+        
+        <button routerLink="/">Go Back</button>
+    </div>
 </div>
 <!-- <hr>
 

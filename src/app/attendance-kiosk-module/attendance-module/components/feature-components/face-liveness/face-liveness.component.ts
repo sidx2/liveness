@@ -23,7 +23,9 @@ export class FaceLivenessComponent implements OnInit {
   session_id = null;
   is_live = false;
   confidence = 0;
-  face_live_message = 'Loading ...'
+  cameraOn: boolean = true;
+  loadingScreenText = 'Loading ...'
+  subText = ""
 
   @ViewChild('faceliveness', { static: false }) faceliveness: FaceLivenessReactWrapperComponent;
 
@@ -67,13 +69,15 @@ export class FaceLivenessComponent implements OnInit {
     console.log("err '", err);
     this.liveness_session_complete = true;
     this.start_liveness_session = false;
-    this.face_live_message = 'Error  during liveness detection'
+    this.cameraOn = false;
+    this.loadingScreenText = 'Error  during liveness detection'
     this.is_live = false;
     // Force remove the ReactDOM
     this.faceliveness.ngOnDestroy();
   }
 
   public handleLivenessAnalysisResults(data: any) {
+    this.loadingScreenText = "Processing..."
     console.log("handleLivenessAnalysisResults data", data);
     if (data["isLive"]) {
       console.log("inside isLive: ", );
@@ -95,14 +99,17 @@ export class FaceLivenessComponent implements OnInit {
 
     if (data['confidence'] > 75) {
       this.is_live = true;
-      this.face_live_message = `Liveness check passed, Confidence ${Math.round(Number(data['confidence']))}`
+      this.loadingScreenText = `Liveness check passed, Confidence ${Math.round(Number(data['confidence']))}`
+      this.subText = "Processing..."
     } else {
       this.is_live = false;
-      this.face_live_message = `Liveness check failed, Confidence ${Math.round(Number(data['confidence']))}`
+      this.loadingScreenText = `Liveness check failed, Confidence ${Math.round(Number(data['confidence']))}`
+      this.subText = ""
       
     }
     this.liveness_session_complete = true;
     this.start_liveness_session = false;
+    this.cameraOn = false;
     // Force remove the ReactDOM
     this.faceliveness.ngOnDestroy();
 
@@ -115,12 +122,26 @@ export class FaceLivenessComponent implements OnInit {
     this.liveness_session_complete = false;
     setTimeout(() => {
       this.start_liveness_session = true;
+      this.cameraOn = true;
     }, 3);
   }
 
   get_liveness_session() {
     this.start_liveness_session = false;
+    // this.cameraOn = false;
     this.faceLivenessService.get_face_liveness_session();
+  }
+
+  toggleCamera() {
+    this.cameraOn = !this.cameraOn;
+    this.liveness_session_complete = true;
+    this.start_liveness_session = false;
+    this.cameraOn = false;
+    this.loadingScreenText = 'Hit Start to start the liveness session';
+    this.subText = "";
+    this.is_live = false;
+    // Force remove the ReactDOM
+    this.faceliveness.ngOnDestroy();
   }
 
 }
