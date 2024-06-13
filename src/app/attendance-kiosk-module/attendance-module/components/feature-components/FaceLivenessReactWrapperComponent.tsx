@@ -19,12 +19,6 @@ import awsmobile from '../../../../../aws-exports';
 
 const containerElementName = 'faceLivenessReactContainer';
 
-const components = {
-    Header() {
-        return <></>
-    }
-}
-
 @Component({
     selector: 'app-faceliveness-react-wrapper',
     template: `<span #${containerElementName}></span>`,
@@ -47,7 +41,7 @@ export class FaceLivenessReactWrapperComponent implements OnInit, OnChanges, OnD
         console.log('Component Loaded' + this.sessionId)
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
+    ngOnChanges(): void {
         this.render();
     }
 
@@ -60,21 +54,10 @@ export class FaceLivenessReactWrapperComponent implements OnInit, OnChanges, OnD
     }
 
     handleAnalysisComplete = async () => {
-        // var rekognition = new AWS.Rekognition();
-        // var params = {
-        //     SessionId: this.sessionId
-        // };
-
         let res = await fetch(`http://172.16.108.38/liveness/apiGet?sessionId=${this.sessionId}`);
         res = await res.json();
 
         this.livenessResults.emit(res);
-
-        // rekognition.getFaceLivenessSessionResults(params).promise().then(data => {
-        //     console.log(data);
-        // }).catch(err => {
-        //     console.log(err);
-        // });
     }
 
     handleError = async (err: any) => {
@@ -82,18 +65,19 @@ export class FaceLivenessReactWrapperComponent implements OnInit, OnChanges, OnD
     }
 
     private render() {
-        const { counter } = this;
-
         ReactDOM.render(
             <React.StrictMode>
                 <div id='faceLivenessDetectorContainer'>
-                    <FaceLivenessDetector sessionId={this.sessionId} region={this.region} onAnalysisComplete={this.handleAnalysisComplete}
+                    <FaceLivenessDetector 
+                        sessionId={this.sessionId} 
+                        region={this.region} 
+                        onAnalysisComplete={this.handleAnalysisComplete}
                         onError={this.handleError}
                         disableInstructionScreen={true}
-                        
                     />
                 </div>
-            </React.StrictMode>
-            , this.containerRef.nativeElement);
+            </React.StrictMode>,
+            this.containerRef.nativeElement
+        );
     }
 }

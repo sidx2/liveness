@@ -40,7 +40,8 @@ export class LoginComponent {
     ).subscribe((res) => {
       console.log("res: ", res);
       this.cookieService.set("token", res["token"], parseInt(res["exp"]));
-      this.toastr.success("Welcome back!")
+      const welcomeText =  `Welcome back! ${res.name}`;
+      this.toastr.success(welcomeText)
       this.router.navigate(["/"]);
     })
 

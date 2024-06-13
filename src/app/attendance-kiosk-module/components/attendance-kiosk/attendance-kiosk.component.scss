@@ -1,5 +1,5 @@
 $primary-color: #3498db;
-$background-color: #ecf0f1;
+$background-color: #0068cb;
 $font-family: 'Helvetica Neue', sans-serif;
 $button-radius: 30px;
 $hover-color: darken($primary-color, 10%);
@@ -8,29 +8,39 @@ $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 // Navbar
 .navbar {
   display: flex;
-  justify-content: flex-end;
-  padding: 15px;
+  justify-content: space-between;
+  align-items: center;
   background-color: $background-color;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  .logo {
+    background-color: #fff;
 
-  .logout-button {
-    background: linear-gradient(45deg, $primary-color, lighten($primary-color, 10%));
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    font-family: $font-family;
-    border-radius: $button-radius;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-
-    &:hover {
-      background: linear-gradient(45deg, lighten($primary-color, 10%), $primary-color);
-      transform: scale(1.05);
+    .menu-logo {
+      background-color: $background-color;
     }
+  }
 
-    &:active {
-      transform: scale(0.95);
+  .actions {
+    .logout-button {
+      background: linear-gradient(45deg, $primary-color, lighten($primary-color, 10%));
+      color: white;
+      border: none;
+      padding: 7px 15px;
+      margin-right: 10px;
+      font-size: 1.2rem;
+      font-family: $font-family;
+      border-radius: $button-radius;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+
+      &:hover {
+        background: linear-gradient(45deg, lighten($primary-color, 10%), $primary-color);
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
     }
   }
 }

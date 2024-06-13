@@ -38,6 +38,7 @@ $border-radius: 5px;
       border-radius: $border-radius;
       font-size: 16px;
       outline: none;
+      width: 100%;
 
       &:focus {
         border-color: $secondary-color;
@@ -124,13 +125,9 @@ table {
             border: 1px solid #ced4da;
             border-radius: $border-radius;
           }
-  
+          
           ng-select {
-  
-            .ng-select-container {
-              border-radius: $border-radius;
-              border: 1px solid #ced4da;
-            }
+            max-width: 200px;
           }
         }
   

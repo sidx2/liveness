@@ -29,12 +29,14 @@ import {
     deleteAssignmentFailure,
     deleteAssignmentSuccess
 } from "./kiosk-settings.actions"
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class kioskSettingsEffects {
     constructor(
         private action$: Actions,
         private kioskSettingsService$: KioskSettingsService,
+        private toastr: ToastrService,
     ) { }
 
     fetchUsers$ = createEffect(() =>
@@ -49,6 +51,7 @@ export class kioskSettingsEffects {
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
+                        this.toastr.error(`Could not fetch users. ${error}`);
                         return of(fetchUsersFailure({ error }))
                     }
                     )
@@ -65,12 +68,14 @@ export class kioskSettingsEffects {
                     map((res: any) => {
                         console.log("userData in effect: ", user);
                         console.log("res: ", res)
+                        this.toastr.success("User was created successfully")
                         return createUserSuccess({ user: res.user });
                     }),
                     catchError((err) => {
                         console.log("userData in effect: ", user);
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
+                        this.toastr.error(`Could not create user. ${error}`)
                         return of(createUserFailure({ error }))
                     }
                     )
@@ -86,11 +91,13 @@ export class kioskSettingsEffects {
                 this.kioskSettingsService$.deleteUser(_id).pipe(
                     map((res: any) => {
                         console.log("res: ", res)
+                        this.toastr.success("User was deleted successfully.")
                         return deleteUserSuccess({ _id: _id });
                     }),
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
+                        this.toastr.error(`Could not delete user. ${error}`);
                         return of(deleteUserFailure({ error }))
                     }
                     )
@@ -106,11 +113,13 @@ export class kioskSettingsEffects {
                 this.kioskSettingsService$.updateUser(user).pipe(
                     map((res: any) => {
                         console.log("res: ", res)
+                        this.toastr.success("User was updated successfully")
                         return updateUserSuccess({ user });
                     }),
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
+                        this.toastr.error(`Could not update user. ${error}`)
                         return of(updateUserFailure({ error }))
                     }
                     )
@@ -125,12 +134,14 @@ export class kioskSettingsEffects {
             switchMap(({ assignment }) =>
                 this.kioskSettingsService$.addAssignment(assignment).pipe(
                     map((res: any) => {
-                        console.log("res: ", res)
+                        console.log("res: ", res);
+                        this.toastr.success(`User assignment was created successfully`);
                         return createAssignmentSuccess({ assignment: res.ua });
                     }),
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
+                        this.toastr.error(`Could not create user assignment. ${error}`)
                         return of(createAssignmentFailure({ error }))
                     }
                     )
@@ -151,6 +162,7 @@ export class kioskSettingsEffects {
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
+                        this.toastr.error(`Could not fetch user assignments. ${error}`)
                         return of(fetchAssignmentFailure({ error }))
                     }
                     )
@@ -165,12 +177,14 @@ export class kioskSettingsEffects {
             switchMap(({ assignment }) =>
                 this.kioskSettingsService$.updateAssignment(assignment).pipe(
                     map((res: any) => {
-                        console.log("res: ", res)
+                        console.log("res: ", res);
+                        this.toastr.success(`User assignment was updated successfully`);
                         return updateAssignmentSuccess({ assignment: res.ua });
                     }),
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
+                        this.toastr.error(`Could not update user assignment. ${error}`);
                         return of(updateAssignmentFailure({ error }))
                     }
                     )
@@ -186,11 +200,13 @@ export class kioskSettingsEffects {
                 this.kioskSettingsService$.deleteAssignment(_id).pipe(
                     map((res: any) => {
                         console.log("res: ", res);
+                        this.toastr.success(`User assignment was deleted successfully`);
                         return deleteAssignmentSuccess({ _id });
                     }),
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
+                        this.toastr.error(`Could not delete user assignment. ${error}`);
                         return of(deleteAssignmentFailure({ error }))
                     }
                     )

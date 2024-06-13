@@ -21,7 +21,6 @@ import { Qr2Component } from './components/feature-components/qr2/qr2.component'
   ],
   imports: [
     CommonModule,
-    // BrowserAnimationsModule,
     BarcodeScannerLivestreamModule,
     MatGridListModule,
     AmplifyAuthenticatorModule,

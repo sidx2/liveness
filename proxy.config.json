@@ -1,0 +1,130 @@
+{
+    "/Commondata": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=BRtqX_AIfEYrHz.vaENfgcw99ruiX0Nl4RzHUQ2vGTw-1718263043409-0.0.1.1-604800000; pbqBeYWPUn=VFAxSDZPRGNUbmZVYVpmeEJneGhOaX5TSGxlMWpjbzeY4VXdbwiYV9i7PmnLFOQz5jXMDVYhLZPXlXKSYIA1dQ%3D%3D; session=d2d21d931ea78a27a83abc6feef5b04b; ab805d4a680a53f51e16ffb2737d0dc5=bf2c816df0c1bd3fe843727fd11152c6f832ab62a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1718263231%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/mobileapi": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/document": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/ms": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/Msfapi": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/LearningApi": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/Pmsdashboard": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/formsapi": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/pmsCalibrationapi": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/idpapi": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/Pmsapi": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/dashboard": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/analytics": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/analyticsnew": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/powerbiplatform": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    },
+    "/OrganisationalApi": {
+        "target": "https://forms2.qa.darwinbox.io/",
+        "secure": false,
+        "changeOrigin": true,
+        "headers": {
+            "Cookie": "_cfuvid=Xn_cPR9i5vh0raw07q7o2p9SIT244BJLzM5QiqLhl9E-1717877702756-0.0.1.1-604800000; pbqBeYWPUn=ZDZHZkJ0UW5hdmk5ZGdKZ1NtbnlGd29LcUpRUzBnT3HqAtH-cgW9DenvpWRoHVV6BGa2Okj5WGWgzAF-gziyiQ%3D%3D; session=f8c114008bf0caabfd35f3e931b05557; ab805d4a680a53f51e16ffb2737d0dc5=7a452ffc2995b1c1d7fabbca34474cd39e338924a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22383930%22%3Bi%3A1%3Bs%3A10%3A%22nymejagany%22%3Bi%3A2%3Bi%3A604800%3Bi%3A3%3Ba%3A16%3A%7Bs%3A18%3A%22userSessionTimeout%22%3Bi%3A1717913443%3Bs%3A9%3A%22plan_name%22%3Bs%3A0%3A%22%22%3Bs%3A9%3A%22tenant_id%22%3Bs%3A3%3A%22113%22%3Bs%3A13%3A%22monthly_spend%22%3Bi%3A0%3Bs%3A14%3A%22account_status%22%3Bi%3A2%3Bs%3A7%3A%22is_paid%22%3Bi%3A0%3Bs%3A15%3A%22financial_cycle%22%3Bs%3A1%3A%221%22%3Bs%3A26%3A%22no_of_employees_on_payment%22%3Bi%3A0%3Bs%3A18%3A%22account_created_on%22%3Bi%3A0%3Bs%3A31%3A%22changed_from_trial_to_active_on%22%3Bi%3A0%3Bs%3A12%3A%22mod_is_leave%22%3Bi%3A1%3Bs%3A17%3A%22mod_is_attendance%22%3Bi%3A1%3Bs%3A13%3A%22mod_is_stream%22%3Bi%3A1%3Bs%3A20%3A%22mod_is_reimbursement%22%3Bi%3A1%3Bs%3A14%3A%22mod_is_payroll%22%3Bi%3A1%3Bs%3A9%3A%22expire_on%22%3Bi%3A0%3B%7D%7D"
+        }
+    }
+}

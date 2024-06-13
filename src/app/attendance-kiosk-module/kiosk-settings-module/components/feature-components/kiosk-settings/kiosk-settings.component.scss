@@ -85,11 +85,7 @@ table {
         }
 
         ng-select {
-
-          .ng-select-container {
-            border-radius: $border-radius;
-            border: 1px solid #ced4da;
-          }
+          max-width: 200px;
         }
       }
 

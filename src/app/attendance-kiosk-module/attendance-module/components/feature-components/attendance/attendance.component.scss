@@ -5,16 +5,16 @@ $button-radius: 30px;
 $hover-color: darken($primary-color, 10%);
 $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
-// Welcome Container
+
 .welcome-container {
-  position: relative; // Allow absolute positioning of child elements
+  position: relative; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; // Align items at the top
-  height: 100vh; // Make sure it occupies the full height of the viewport
+  justify-content: flex-start; 
+  height: 100vh; 
   width: 100%;
-  background-color: $background-color;
+  // background-color: $background-color;
   padding: 50px;
   border-radius: 15px;
   box-shadow: $box-shadow;
@@ -31,13 +31,13 @@ $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
   
   .links {
-    // position: absolute; // Position the links absolutely within the container
-    top: 0; // Align at the top
-    left: 0; // Align at the right
+    
+    top: 0; 
+    left: 0; 
     display: flex;
-    // flex-direction: row; // Default is row, so no need to specify
+    
     align-items: center;
-    margin: 20px; // Adjust margin for spacing from the container edges
+    margin: 20px; 
 
     a {
       text-decoration: none;
@@ -49,11 +49,11 @@ $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       align-items: center;
       text-align: center;
       transition: transform 0.3s ease;
-      max-width: 65%; // Limit their maximum width to maintain some padding
-      margin-left: 20px; // Add margin for spacing between the items
+      max-width: 65%; 
+      margin-left: 20px; 
 
       &:first-child {
-        margin-left: 0; // No left margin for the first child
+        margin-left: 0; 
       }
 
       &:hover {
@@ -61,8 +61,8 @@ $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
 
       img {
-        width: 350px; // Adjusted to occupy more space
-        height: auto; // Maintain aspect ratio
+        width: 350px; 
+        height: auto; 
         margin-bottom: 10px;
         border-radius: 10px;
         box-shadow: $box-shadow;
@@ -73,7 +73,7 @@ $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         font-family: $font-family;
         color: $primary-color;
         text-decoration: none;
-        font-size: 2em; // Increased font size for emphasis
+        font-size: 2em; 
         transition: color 0.3s ease;
 
         &:hover {

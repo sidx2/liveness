@@ -132,6 +132,12 @@ export class FaceLivenessComponent implements OnInit {
     this.faceLivenessService.get_face_liveness_session();
   }
 
+  start() {
+    this.loadingScreenText = "Loading ..."
+    this.get_liveness_session();
+    this.cameraOn = true;
+  }
+
   toggleCamera() {
     this.cameraOn = !this.cameraOn;
     this.liveness_session_complete = true;
