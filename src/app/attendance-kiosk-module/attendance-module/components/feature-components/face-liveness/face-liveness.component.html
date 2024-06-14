@@ -1,7 +1,8 @@
 <div id="faceLivenessReactContainer" *ngIf="start_liveness_session; else elseBlock">
     <app-faceliveness-react-wrapper #faceliveness [sessionId]="session_id"
         (livenessResults)="handleLivenessAnalysisResults($event)"
-        (livenessErrors)="handleErrors($event)"></app-faceliveness-react-wrapper>
+        (livenessErrors)="handleErrors($event)">
+    </app-faceliveness-react-wrapper>
 
 </div>
 
@@ -9,7 +10,6 @@
     <div id="faceLivenessReactContainer">
 
         <div id="elseBlock">
-            
             <h1>{{loadingScreenText}}</h1>
             <h2>{{subText}}</h2>
         </div>
@@ -23,22 +23,3 @@
         </ng-template>
     <button routerLink="/">Go Back</button>
 </div>
-
-<!-- <div *ngIf="liveness_session_complete">
-    <mat-grid-list cols="1" rowHeight='10vh'>
-        <mat-grid-tile><mat-grid-tile-header>User liveness status : {{face_live_message}}
-                <mat-icon *ngIf="is_live" class='icon-display-success'>
-                    thumb_up
-                </mat-icon>
-                <mat-icon *ngIf="!is_live" class='icon-display-failure'>
-                    thumb_down
-                </mat-icon>
-            </mat-grid-tile-header>
-        </mat-grid-tile>
-    </mat-grid-list>
-    
-    <button
-        class="amplify-button--primary .submit-button amplify-button amplify-field-group__control amplify-button--primary"
-        (click)="get_liveness_session()">Re Test</button>
-    <button routerLink="/">Go Back</button>
-</div> -->
