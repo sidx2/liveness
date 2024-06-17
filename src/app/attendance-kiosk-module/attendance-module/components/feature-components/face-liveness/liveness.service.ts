@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class LivenessService {
+export class LivenessServicee {
   constructor(
     private http: HttpClient,
   ) {

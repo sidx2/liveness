@@ -51,7 +51,7 @@ export class kioskSettingsEffects {
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
-                        this.toastr.error(`Could not fetch users. ${error}`);
+                        (window as any).toast.show(`Could not fetch users. ${error}`, "error");
                         return of(fetchUsersFailure({ error }))
                     }
                     )
@@ -67,15 +67,15 @@ export class kioskSettingsEffects {
                 this.kioskSettingsService$.addUesr(user).pipe(
                     map((res: any) => {
                         console.log("userData in effect: ", user);
-                        console.log("res: ", res)
-                        this.toastr.success("User was created successfully")
+                        console.log("res: ", res);
+                        (window as any).toast.show("User was created successfully", "ok");
                         return createUserSuccess({ user: res.user });
                     }),
                     catchError((err) => {
                         console.log("userData in effect: ", user);
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
-                        this.toastr.error(`Could not create user. ${error}`)
+                        (window as any).toast.show(`Could not create user. ${error}`, "error")
                         return of(createUserFailure({ error }))
                     }
                     )
@@ -90,14 +90,14 @@ export class kioskSettingsEffects {
             switchMap(({ _id }) =>
                 this.kioskSettingsService$.deleteUser(_id).pipe(
                     map((res: any) => {
-                        console.log("res: ", res)
-                        this.toastr.success("User was deleted successfully.")
+                        console.log("res: ", res);
+                        (window as any).toast.show("User was deleted successfully.", "ok")
                         return deleteUserSuccess({ _id: _id });
                     }),
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
-                        this.toastr.error(`Could not delete user. ${error}`);
+                        (window as any).toast.show(`Could not delete user. ${error}`, "error");
                         return of(deleteUserFailure({ error }))
                     }
                     )
@@ -112,14 +112,14 @@ export class kioskSettingsEffects {
             switchMap(({ user }) =>
                 this.kioskSettingsService$.updateUser(user).pipe(
                     map((res: any) => {
-                        console.log("res: ", res)
-                        this.toastr.success("User was updated successfully")
+                        console.log("res: ", res);
+                        (window as any).toast.show("User was updated successfully", "ok");
                         return updateUserSuccess({ user });
                     }),
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
-                        this.toastr.error(`Could not update user. ${error}`)
+                        (window as any).toast.show(`Could not update user. ${error}`, "error")
                         return of(updateUserFailure({ error }))
                     }
                     )
@@ -135,13 +135,13 @@ export class kioskSettingsEffects {
                 this.kioskSettingsService$.addAssignment(assignment).pipe(
                     map((res: any) => {
                         console.log("res: ", res);
-                        this.toastr.success(`User assignment was created successfully`);
+                        (window as any).toast.show(`User assignment was created successfully`, "ok");
                         return createAssignmentSuccess({ assignment: res.ua });
                     }),
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
-                        this.toastr.error(`Could not create user assignment. ${error}`)
+                        (window as any).toast.show(`Could not create user assignment. ${error}`, "error")
                         return of(createAssignmentFailure({ error }))
                     }
                     )
@@ -162,7 +162,7 @@ export class kioskSettingsEffects {
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
-                        this.toastr.error(`Could not fetch user assignments. ${error}`)
+                        (window as any).toast.show(`Could not fetch user assignments. ${error}`, "error")
                         return of(fetchAssignmentFailure({ error }))
                     }
                     )
@@ -178,13 +178,13 @@ export class kioskSettingsEffects {
                 this.kioskSettingsService$.updateAssignment(assignment).pipe(
                     map((res: any) => {
                         console.log("res: ", res);
-                        this.toastr.success(`User assignment was updated successfully`);
+                        (window as any).toast.show(`User assignment was updated successfully`, "ok");
                         return updateAssignmentSuccess({ assignment: res.ua });
                     }),
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
-                        this.toastr.error(`Could not update user assignment. ${error}`);
+                        (window as any).toast.show(`Could not update user assignment. ${error}`, "error");
                         return of(updateAssignmentFailure({ error }))
                     }
                     )
@@ -200,13 +200,13 @@ export class kioskSettingsEffects {
                 this.kioskSettingsService$.deleteAssignment(_id).pipe(
                     map((res: any) => {
                         console.log("res: ", res);
-                        this.toastr.success(`User assignment was deleted successfully`);
+                        (window as any).toast.show(`User assignment was deleted successfully`, "ok");
                         return deleteAssignmentSuccess({ _id });
                     }),
                     catchError((err) => {
                         console.log("err: ", err);
                         const error = err?.error?.error || "Something went wrong";
-                        this.toastr.error(`Could not delete user assignment. ${error}`);
+                        (window as any).toast.show(`Could not delete user assignment. ${error}`, "error");
                         return of(deleteAssignmentFailure({ error }))
                     }
                     )

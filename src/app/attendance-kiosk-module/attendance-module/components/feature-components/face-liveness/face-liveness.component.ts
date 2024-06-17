@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { LivenessService } from './liveness.service';
+// import { LivenessService } from './liveness.service';
 import * as AWS from 'aws-sdk';
 import awsmobile from 'src/aws-exports';
 import { FaceLivenessReactWrapperComponent } from '../FaceLivenessReactWrapperComponent';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'src/app/services/cookie.service';
-import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { AttendanceService } from '../../../services/attendance.service';
 
 @Component({
   selector: 'app-face-liveness',
@@ -27,20 +27,24 @@ export class FaceLivenessComponent implements OnInit {
   loadingScreenText = 'Loading ...'
   subText = ""
 
+  isModalOpen = false
+  modalHeaderText = "Are you sure you want to continue"
+  modalMessage = "Action cannot be undone"
+  modalProceedText = "Continue"
+  modalCancalText = "Take me back"
+
   @ViewChild('faceliveness', { static: false }) faceliveness: FaceLivenessReactWrapperComponent;
 
   constructor(
-    private faceLivenessService: LivenessService,
-    private http: HttpClient,
-    private cookieService: CookieService,
-    private toastrService: ToastrService,
+    // private faceLivenessService: LivenessService,
     private router: Router,
+    private attendanceService: AttendanceService,
   ) {
 
   }
 
   ngOnInit(): void {
-    this.faceLivenessService.liveness_session.subscribe(([status, data]) => {
+    this.attendanceService.liveness_session.subscribe(([status, data]) => {
       console.log("status, data:", status, data);
       if (status == 'success') {
         this.initate_liveness_session(data);
@@ -50,7 +54,7 @@ export class FaceLivenessComponent implements OnInit {
     AWS.config.region = awsmobile['aws_project_region'];
     const cognito_endpoint = `cognito-idp.${awsmobile['aws_project_region']}.amazonaws.com/${awsmobile['aws_user_pools_id']}`
     // Initialize the Amazon Cognito credentials provider
-    const session = this.faceLivenessService.get_current_session().then(data => {
+    const session = this.attendanceService.get_current_session().then(data => {
       console.log("got current session: ", data);
       AWS.config.credentials = new AWS.CognitoIdentityCredentials({
         IdentityPoolId: awsmobile['aws_cognito_identity_pool_id'],
@@ -71,6 +75,7 @@ export class FaceLivenessComponent implements OnInit {
     this.start_liveness_session = false;
     this.cameraOn = false;
     this.loadingScreenText = 'Error  during liveness detection'
+    this.subText = err;
     this.is_live = false;
     // Force remove the ReactDOM
     this.faceliveness.ngOnDestroy();
@@ -81,23 +86,31 @@ export class FaceLivenessComponent implements OnInit {
     console.log("handleLivenessAnalysisResults data", data);
     if (data["isLive"]) {
       console.log("inside isLive: ", );
-      this.http.post(`http://172.16.108.38/liveness/getImage`, { sessionId: data["sessionId"] }).subscribe((res:any) => {
+      this.attendanceService.getImage(data.sessionId).subscribe((res:any) => {
         console.log("res in subscribe: ''", res);
-        this.http.post("http://172.16.108.38/attendance/FaceAttendance", {photoData:res, token: this.cookieService.get("token")}).subscribe((data) => {
-          console.log("res in subscribe.subscribe: ''", res);
-          this.toastrService.success("Success", "Attendance marked successfully!");
-          this.router.navigate(["/"])
+        // this.http.post("http://172.16.108.38/attendance/FaceAttendance", {photoData:res, token: this.cookieService.get("token")}).subscribe((data) => {
+          this.attendanceService.verifyFace(res).subscribe((data: any) => {
+          console.log("res in subscribe.subscribe: ''", data);
+          const user_name = data.users_list[Object.keys(data?.users_list)[0]];
+          const msg = `Attendance was marked successfully for ${user_name}!`;
+          // this.toastrService.success(msg);
+          (window as any).toast.show(msg, "info");
+          this.router.navigate(["/"]);
         }, (err) => {
-          this.toastrService.error("Could not mark attendence", "Failed to mark attedance");
-          if (!confirm("Could not mark attendence! Try again?")) {
-
-            this.router.navigate(["/"])
-          }
+          console.log("err:", err);
+          const user_name = data.users_list[Object.keys(data?.users_list || {})[0]] || "the user";
+          const msg = `Could not mark attendence for ${user_name}!`;
+          // this.toastrService.error(msg);
+          (window as any).toast.show(msg, "error");
+          this.isModalOpen = true;
         })
+      }, (error) => {
+        // this.toastrService.error(error);
+        (window as any).toast.show(error, "error");
       })
     }
 
-    if (data['confidence'] > 75) {
+    if (data['confidence'] > 70) {
       this.is_live = true;
       this.loadingScreenText = `Liveness check passed, Confidence ${Math.round(Number(data['confidence']))}`
       this.subText = "Processing..."
@@ -129,13 +142,25 @@ export class FaceLivenessComponent implements OnInit {
   get_liveness_session() {
     this.start_liveness_session = false;
     // this.cameraOn = false;
-    this.faceLivenessService.get_face_liveness_session();
+    this.attendanceService.get_face_liveness_session();
   }
 
   start() {
     this.loadingScreenText = "Loading ..."
     this.get_liveness_session();
     this.cameraOn = true;
+  }
+
+  onModalConfirm() {
+    console.log("modal confirmed");
+    this.isModalOpen = false;
+  }
+  
+  onModalCancelled() {
+    console.log("modal cancelled");
+    this.router.navigate(["/"]);
+    this.isModalOpen = false;
+
   }
 
   toggleCamera() {

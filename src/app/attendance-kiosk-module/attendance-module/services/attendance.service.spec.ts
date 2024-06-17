@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+import { AttendanceService } from './attendance.service';
 
-import { QrService } from './qr.service';
 
-describe('QrService', () => {
-  let service: QrService;
+describe('AttendanceService', () => {
+  let service: AttendanceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(QrService);
+    service = TestBed.inject(AttendanceService);
   });
 
   it('should be created', () => {

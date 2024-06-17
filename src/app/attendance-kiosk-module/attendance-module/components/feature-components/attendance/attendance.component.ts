@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { CookieService } from '../../../../../services/cookie.service';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ export class attendanceComponent {
   constructor(
     private cookieService: CookieService,
     private router: Router,
-  ) {}
+  ) { }
 
   onLogout() {
     this.cookieService.clearAll();

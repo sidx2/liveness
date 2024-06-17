@@ -1,6 +1,20 @@
+<dbx-confirmation-dialog id="db"
+        [headerText]="modalHeaderText"
+        [message]="modalMessage"
+        [proceedText]="modalProceedText"
+        [cancelText]="modalCancalText"
+        [isOpen]="isModalOpen"
+        (proceedClick)="onModalConfirm()"
+        (cancelClick)="onModalCancelled()"
+     >  
+</dbx-confirmation-dialog>
 <div id="videoContainer">
     <h1>Please scan your QR Code</h1>
     <video id="qrVideo"></video>
+
+    <div *ngIf="!isScannerOn">
+        Processing...
+    </div>
     
     <div class="btn">
         <button (click)="toggleScanner()" *ngIf="isScannerOn; else scannerOff">Stop</button>

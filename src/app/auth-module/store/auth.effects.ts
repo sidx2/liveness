@@ -21,8 +21,6 @@ export class authEffects {
             switchMap(({ credentials }) =>
                 this.authService$.login(credentials).pipe(
                     map((res: any) => {
-                        // this.store.dispatch(resetLoading());
-                        // this.toastr.success("Welcome back!");
                         console.log("res: ", res);
                         return loginSuccess(res);
                     }),

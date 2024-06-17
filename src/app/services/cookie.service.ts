@@ -10,6 +10,7 @@ export class CookieService {
 
   set(name: string, value: string, seconds: number): void {
     if (!isPlatformBrowser(this.platformId)) { return; }
+    console.log("setting cookie: ", name, value);
     const date = new Date();
     date.setTime(date.getTime() + (seconds * 1000));
     const expires = "expires=" + date.toUTCString();

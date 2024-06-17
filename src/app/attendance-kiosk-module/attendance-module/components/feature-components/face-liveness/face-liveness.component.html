@@ -1,3 +1,14 @@
+<dbx-confirmation-dialog id="db"
+        [headerText]="modalHeaderText"
+        [message]="modalMessage"
+        [proceedText]="modalProceedText"
+        [cancelText]="modalCancalText"
+        [isOpen]="isModalOpen"
+        (proceedClick)="onModalConfirm()"
+        (cancelClick)="onModalCancelled()"
+     >  
+</dbx-confirmation-dialog>
+
 <div id="faceLivenessReactContainer" *ngIf="start_liveness_session; else elseBlock">
     <app-faceliveness-react-wrapper #faceliveness [sessionId]="session_id"
         (livenessResults)="handleLivenessAnalysisResults($event)"

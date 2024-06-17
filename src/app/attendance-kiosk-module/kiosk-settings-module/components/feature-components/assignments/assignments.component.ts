@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { KioskSettingsService } from '../../../services/kiosk-settings.service';
 import { Store } from '@ngrx/store';
 import { createAssignmentRequest, deleteAssignmentRequest, fetchAssignmentRequest, updateAssignmentRequest } from '../../../store/kiosk-settings.actions';
 import { kiosSettingsStateSelector } from '../../../store/kiosk-settings.selectors';
