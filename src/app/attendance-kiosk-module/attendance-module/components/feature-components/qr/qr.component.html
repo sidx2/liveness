@@ -10,11 +10,14 @@
 </dbx-confirmation-dialog>
 <div id="videoContainer">
     <h1>Please scan your QR Code</h1>
-    <video id="qrVideo"></video>
+    <video *ngIf="isScannerOn; else loadingScreen"  id="qrVideo"></video>
+    
+    <ng-template #loadingScreen>
+        <div class="loadingScreen">
 
-    <div *ngIf="!isScannerOn">
-        Processing...
-    </div>
+            {{ loadingScreenMessage }}
+        </div>
+    </ng-template>
     
     <div class="btn">
         <button (click)="toggleScanner()" *ngIf="isScannerOn; else scannerOff">Stop</button>

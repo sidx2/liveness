@@ -31,10 +31,13 @@ export class AttendanceService {
     try {
       json = JSON.parse(data);
     } catch (err) {
+      console.log("invalid qr")
       return throwError("Invaid QR Code");
     }
 
-    if (!("emp_id" in Object.keys(json))) {
+    if (!json.emp_id) {
+      console.log("json: ", json, typeof(json));
+      console.log("emp_id not in json");
       return throwError("Invalid QR Code");
     }
 
@@ -46,7 +49,7 @@ export class AttendanceService {
     } catch (err) {
       throwError(err);
     }
-    return throwError("Something went wrong while marking attendance using QR")
+    return throwError("Something went wrong while marking attendance using QR");
   }
 
   public liveness_session: BehaviorSubject<[string, {}]> = new BehaviorSubject<[string, {}]>(['empty', {}]);

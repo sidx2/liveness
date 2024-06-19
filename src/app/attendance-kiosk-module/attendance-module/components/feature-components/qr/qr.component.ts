@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import QrScanner from "qr-scanner"
 import { AttendanceService } from '../../../services/attendance.service';
 import { Router } from '@angular/router';
@@ -10,70 +10,90 @@ import { Router } from '@angular/router';
 })
 export class QrComponent implements OnInit {
   scanner: any
+  video: any
+  camQrResult: any
   isScannerOn: Boolean = true;
   beep = new Audio("assets/beep-07a.mp3")
 
-  isModalOpen = false
-  modalHeaderText = "Could not mark attendence! Try again?"
-  modalMessage = "Action cannot be undone"
-  modalProceedText = "Try again"
-  modalCancalText = "Take me back"
+  isModalOpen = false;
+  loadingScreenMessage = "Hit Start to start the scanning...";
+  modalHeaderText = "Could not mark attendence! Try again?";
+  modalMessage = "Action cannot be undone";
+  modalProceedText = "Try again";
+  modalCancalText = "Take me back";
 
   constructor(
     private attendanceService: AttendanceService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
   ) { }
 
   toggleScanner() {
+    console.log("toggling scanner!")
     if (this.isScannerOn) {
       this.scanner.stop();
     } else this.scanner.start();
+    // } else {
+    //   this.scanner = new QrScanner((this.video as HTMLVideoElement), result => this.setResult(this.camQrResult, result), {
+    //     onDecodeError: error => { },
+    //     highlightScanRegion: true,
+    //     highlightCodeOutline: true,
+    //   });
+    // }
     this.isScannerOn = !this.isScannerOn;
+    this.cdr.detectChanges();
   }
 
-  ngOnInit(): void {
-    const video = document.getElementById('qrVideo');
-    const camQrResult = document.getElementById('cam-qr-result');
+  ngOnInit () {}
+  ngAfterViewInit(): void {
+    // if (this.isScannerOn) {
 
-    const setResult = (label: any, result: any) => {
+      const video = document.getElementById('qrVideo');
+      const camQrResult = document.getElementById('cam-qr-result');
+      this.video = video;
+      this.camQrResult = camQrResult
+      
+      
+      
+      const scanner = new QrScanner((video as HTMLVideoElement), result => this.setResult(this.camQrResult, result), {
+        onDecodeError: error => { },
+        highlightScanRegion: true,
+        highlightCodeOutline: true,
+      
+      });
+      
+      this.scanner = scanner;
+      
+      scanner.start().then(() => {
+        QrScanner?.listCameras(true).then(cameras => cameras.forEach(camera => {
+          const option = document.createElement('option');
+          option.value = camera.id;
+          option.text = camera.label;
+        }));
+      });
+      // }
+    }
+    setResult (label: any, result: any)  {
       console.log(result.data);
       this.beep.play();
       this.attendanceService.markAttendenceUsingQR(result.data).subscribe((data: any) => {
         console.log("res data: ", data);
-        const str: string = `Attendence was marked successfully for ${data.response.emp_name}`;
+        const str: string = `Attendence was marked successfully for ${result.data.emp_name}`;
         // this.toastr.success(str);
         (window as any).toast.show(str, "ok");
         history.back();
-
+        
       }, (error) => {
+        this.toggleScanner();
         console.log("error: ", error);
-        const str: string = `Failed to mark attedance. ${error}`
-        this.modalHeaderText = str;
-        // this.toastr.error(str);
-        (window as any).toast.show(str, "ok");
-        this.isModalOpen = true;
+        const str: string = `Failed to mark attedance. ${error}`;
+        // this.modalHeaderText = str;
+        // this.isModalOpen = true;
+        (window as any).toast.show(str, "error");
       });
-
-      scanner.stop();
+      
+      this.scanner.stop();
     }
-
-
-    const scanner = new QrScanner((video as HTMLVideoElement), result => setResult(camQrResult, result), {
-      onDecodeError: error => { },
-      highlightScanRegion: true,
-      highlightCodeOutline: true,
-    });
-
-    this.scanner = scanner;
-
-    scanner.start().then(() => {
-      QrScanner?.listCameras(true).then(cameras => cameras.forEach(camera => {
-        const option = document.createElement('option');
-        option.value = camera.id;
-        option.text = camera.label;
-      }));
-    });
-  }
 
   goBack() {
     this.scanner.stop();

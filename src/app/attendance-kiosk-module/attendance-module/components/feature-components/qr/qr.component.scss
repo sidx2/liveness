@@ -25,6 +25,23 @@ $button-radius: 30px;
             overflow: inherit !important;
         }
     }
+
+    .loadingScreen {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 2em;
+        font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
+
+
+        object-fit: inherit !important;
+        overflow-clip-margin: inherit !important;
+        overflow: inherit !important;
+    }
 }
 
 
@@ -35,20 +52,18 @@ $button-radius: 30px;
     align-items: center;
 
     button {
-        background: $primary-color;
+        background-color: #0d6aff;
+        border-color: #0d6aff;
         color: white;
-        border: none;
-        padding: 10px 20px;
-        margin: 10px 10px;
-        font-size: 1.2rem;
-        font-family: $font-family;
-        border-radius: $button-radius;
-        cursor: pointer;
-        transition: background 0.5s ease, transform 0.4s ease;
 
-        &:hover {
-            opacity: 0.9;
-        }
+        // background-color: white;
+        outline: none;
+        border-radius: 3px;
+        cursor: pointer;
+        padding: 5px 12px;
+        border: 0.5px solid transparent;
+        margin-left: 10px;
+        font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
     }
 }
 
