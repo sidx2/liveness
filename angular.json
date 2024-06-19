@@ -80,7 +80,7 @@
           "defaultConfiguration": "development",
           "options": {
             "proxyConfig": "./proxy.config.json",
-            "ssl": true,
+            "ssl": false,
             "sslKey": "certs/localhost.key",
             "sslCert": "certs/localhost.crt"
           }
