@@ -77,8 +77,8 @@ export class QrComponent implements OnInit {
       console.log(result.data);
       this.beep.play();
       this.attendanceService.markAttendenceUsingQR(result.data).subscribe((data: any) => {
-        console.log("res data: ", data);
-        const str: string = `Attendence was marked successfully for ${result.data.emp_name}`;
+        console.log("res data: ", result.data);
+        const str: string = `Attendence was marked successfully for ${JSON.parse(result.data).emp_name}`;
         // this.toastr.success(str);
         (window as any).toast.show(str, "ok");
         history.back();
