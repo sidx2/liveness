@@ -81,24 +81,38 @@ export class FaceLivenessComponent implements OnInit {
     this.faceliveness.ngOnDestroy();
   }
 
-  public handleLivenessAnalysisResults(data: any) {
-    this.loadingScreenText = "Processing..."
+  public handleLivenessAnalysisResults = (data: any) => {
+    this.loadingScreenText = "Processing...";
     console.log("handleLivenessAnalysisResults data", data);
     if (data["isLive"]) {
-      console.log("inside isLive: ", );
-      this.attendanceService.getImage(data.sessionId).subscribe((res:any) => {
+      console.log("inside isLive: ",);
+      this.attendanceService.getImage(data.sessionId).subscribe((res: any) => {
         console.log("res in subscribe: ''", res);
         // this.http.post("http://172.16.108.38/attendance/FaceAttendance", {photoData:res, token: this.cookieService.get("token")}).subscribe((data) => {
-          this.attendanceService.verifyFace(res).subscribe((data: any) => {
+        this.attendanceService.verifyFace(res).subscribe((data: any) => {
           console.log("res in subscribe.subscribe: ''", data);
-          const user_name = data.users_list[Object.keys(data?.users_list)[0]];
-          const msg = `Attendance was marked successfully for ${user_name}!`;
-          // this.toastrService.success(msg);
-          (window as any).toast.show(msg, "info");
-          this.router.navigate(["/"]);
+          if (data.verification_result) {
+
+            const user_name = data.users_list[Object.keys(data?.users_list)[0]];
+            const msg = `Attendance was marked successfully for ${user_name}!`;
+            // this.toastrService.success(msg);
+            (window as any).toast.show(msg, "info");
+            this.router.navigate(["/"]);
+          } else {
+            this.loadingScreenText = 'Hit Start to start the liveness session';
+            this.subText = "";
+            // console.log("err:", err);
+            // const user_name = data.users_list[Object?.keys(data?.users_list || {})[0]] || "the user";
+            const msg = `Cannot not mark attendence for the user!`;
+            // this.toastrService.error(msg);
+            (window as any).toast.show(msg, "error");
+            // this.isModalOpen = true;
+          }
         }, (err) => {
           console.log("err:", err);
           const user_name = data.users_list[Object.keys(data?.users_list || {})[0]] || "the user";
+          this.modalHeaderText = "Could not mark attendance for the user"
+
           const msg = `Could not mark attendence for ${user_name}!`;
           // this.toastrService.error(msg);
           (window as any).toast.show(msg, "error");
@@ -118,7 +132,7 @@ export class FaceLivenessComponent implements OnInit {
       this.is_live = false;
       this.loadingScreenText = `Liveness check failed, Confidence ${Math.round(Number(data['confidence']))}`
       this.subText = ""
-      
+
     }
     this.liveness_session_complete = true;
     this.start_liveness_session = false;
@@ -153,12 +167,16 @@ export class FaceLivenessComponent implements OnInit {
 
   onModalConfirm() {
     console.log("modal confirmed");
+    this.modalHeaderText = "Are you sure you want to continue";
+
     this.isModalOpen = false;
   }
-  
+
   onModalCancelled() {
     console.log("modal cancelled");
     this.router.navigate(["/"]);
+    this.loadingScreenText = 'Hit Start to start the liveness session';
+    this.subText = "";
     this.isModalOpen = false;
 
   }

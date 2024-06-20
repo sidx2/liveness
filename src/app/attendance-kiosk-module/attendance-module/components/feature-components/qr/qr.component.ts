@@ -73,15 +73,22 @@ export class QrComponent implements OnInit {
       });
       // }
     }
-    setResult (label: any, result: any)  {
+    setResult (label: any, result: any) {
       console.log(result.data);
       this.beep.play();
       this.attendanceService.markAttendenceUsingQR(result.data).subscribe((data: any) => {
-        console.log("res data: ", result.data);
-        const str: string = `Attendence was marked successfully for ${JSON.parse(result.data).emp_name}`;
-        // this.toastr.success(str);
-        (window as any).toast.show(str, "ok");
-        history.back();
+        console.log("data: ", data);
+        if (!(data.response instanceof Array)) {
+          console.log("res data: ", result.data);
+          const str: string = `Attendence was marked successfully for ${JSON.parse(result.data).emp_name}`;
+          // this.toastr.success(str);
+          (window as any).toast.show(str, "ok");
+          history.back();
+        } else {
+          const str: string = `Cannot mark attendance for ${JSON.parse(result.data).emp_name}`;
+          // this.toastr.success(str);
+          (window as any).toast.show(str, "error");
+        }
         
       }, (error) => {
         this.toggleScanner();
