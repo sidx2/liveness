@@ -32,7 +32,36 @@ export class QrComponent implements OnInit {
     console.log("toggling scanner!")
     if (this.isScannerOn) {
       this.scanner.stop();
-    } else this.scanner.start();
+
+    } else {
+      
+      // this.scanner = null;
+      // this.video = null;
+      // this.camQrResult = null;
+
+      const video = document.getElementById('qrVideo');
+      const camQrResult = document.getElementById('cam-qr-result');
+
+      this.video = video;
+      this.camQrResult = camQrResult;
+
+      const scanner = new QrScanner((video as HTMLVideoElement), result => this.setResult(camQrResult, result), {
+        onDecodeError: error => { },
+        highlightScanRegion: true,
+        highlightCodeOutline: true,
+  
+      });
+  
+      this.scanner = scanner;
+  
+      this.scanner.start().then(() => {
+        QrScanner?.listCameras(true).then(cameras => cameras.forEach(camera => {
+          const option = document.createElement('option');
+          option.value = camera.id;
+          option.text = camera.label;
+        }));
+      });
+    }
     // } else {
     //   this.scanner = new QrScanner((this.video as HTMLVideoElement), result => this.setResult(this.camQrResult, result), {
     //     onDecodeError: error => { },
@@ -44,63 +73,64 @@ export class QrComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  ngOnInit () {}
+  ngOnInit() { }
   ngAfterViewInit(): void {
     // if (this.isScannerOn) {
 
-      const video = document.getElementById('qrVideo');
-      const camQrResult = document.getElementById('cam-qr-result');
-      this.video = video;
-      this.camQrResult = camQrResult
-      
-      
-      
-      const scanner = new QrScanner((video as HTMLVideoElement), result => this.setResult(this.camQrResult, result), {
-        onDecodeError: error => { },
-        highlightScanRegion: true,
-        highlightCodeOutline: true,
-      
-      });
-      
-      this.scanner = scanner;
-      
-      scanner.start().then(() => {
-        QrScanner?.listCameras(true).then(cameras => cameras.forEach(camera => {
-          const option = document.createElement('option');
-          option.value = camera.id;
-          option.text = camera.label;
-        }));
-      });
-      // }
-    }
-    setResult (label: any, result: any) {
-      console.log(result.data);
-      this.beep.play();
-      this.attendanceService.markAttendenceUsingQR(result.data).subscribe((data: any) => {
-        console.log("data: ", data);
-        if (!(data.response instanceof Array)) {
-          console.log("res data: ", result.data);
-          const str: string = `Attendence was marked successfully for ${JSON.parse(result.data).emp_name}`;
-          // this.toastr.success(str);
-          (window as any).toast.show(str, "ok");
-          history.back();
-        } else {
-          const str: string = `Cannot mark attendance for ${JSON.parse(result.data).emp_name}`;
-          // this.toastr.success(str);
-          (window as any).toast.show(str, "error");
-        }
-        
-      }, (error) => {
-        this.toggleScanner();
-        console.log("error: ", error);
-        const str: string = `Failed to mark attedance. ${error}`;
-        // this.modalHeaderText = str;
-        // this.isModalOpen = true;
+    const video = document.getElementById('qrVideo');
+    const camQrResult = document.getElementById('cam-qr-result');
+    this.video = video;
+    this.camQrResult = camQrResult
+
+
+
+    const scanner = new QrScanner((video as HTMLVideoElement), result => this.setResult(this.camQrResult, result), {
+      onDecodeError: error => { },
+      highlightScanRegion: true,
+      highlightCodeOutline: true,
+
+    });
+
+    this.scanner = scanner;
+
+    scanner.start().then(() => {
+      QrScanner?.listCameras(true).then(cameras => cameras.forEach(camera => {
+        const option = document.createElement('option');
+        option.value = camera.id;
+        option.text = camera.label;
+      }));
+    });
+    // }
+  }
+  setResult(label: any, result: any) {
+    console.log(result.data);
+    this.beep.play();
+    this.attendanceService.markAttendenceUsingQR(result.data).subscribe((data: any) => {
+      console.log("data: ", data);
+      if (!(data.response instanceof Array)) {
+        console.log("res data: ", result.data);
+        const str: string = `Attendence was marked successfully for ${JSON.parse(result.data).emp_name}`;
+        // this.toastr.success(str);
+        (window as any).toast.show(str, "ok");
+        history.back();
+      } else {
+        const str: string = `Cannot mark attendance for ${JSON.parse(result.data).emp_name || "User"}`;
+        // this.toastr.success(str);
         (window as any).toast.show(str, "error");
-      });
-      
-      this.scanner.stop();
-    }
+      }
+
+    }, (error) => {
+      this.toggleScanner();
+      console.log("error: ", error);
+      const str: string = `Cannot mark attendance for ${JSON.parse(result.data).emp_name || "User"}`;
+      // this.modalHeaderText = str;
+      // this.isModalOpen = true;
+      (window as any).toast.show(str, "error");
+      history.back(); // ([""]);
+    });
+
+    this.scanner.stop();
+  }
 
   goBack() {
     this.scanner.stop();
