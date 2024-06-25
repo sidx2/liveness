@@ -4,6 +4,7 @@ import { AttendanceService } from '../../../services/attendance.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'src/app/services/cookie.service';
 import { HttpClient } from '@angular/common/http';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-qr2',
@@ -11,10 +12,12 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./qr.component.scss']
 })
 export class QrComponent implements OnInit {
-  scanner: any
-  video: any
+  scanner: any;
+  video: any;
   camQrResult: any
   isScannerOn: Boolean = true;
+  destroy$ = new Subject<void>();
+
   beep = new Audio("assets/beep-07a.mp3")
 
   isModalOpen = false;
@@ -37,7 +40,9 @@ export class QrComponent implements OnInit {
       this.http.post("/kioskapp/syncOfflineClockInAttendance", {
         "requests": [],
         "token": token
-      }).subscribe((data) => {
+      }).pipe(
+        takeUntil(this.destroy$)
+      ).subscribe((data) => {
         console.log("login verified: ", data);
       })
     }
@@ -47,48 +52,21 @@ export class QrComponent implements OnInit {
     console.log("toggling scanner!")
     if (this.isScannerOn) {
       this.scanner.stop();
-
-    } else {
+      this.video.style.display = "none";
       
-      // this.scanner = null;
-      // this.video = null;
-      // this.camQrResult = null;
+    } else {
+      this.scanner.start();
+      this.video.style.display = "block";
+      // this.videoPlaceholder.style.display = "none";
 
-      const video = document.getElementById('qrVideo');
-      const camQrResult = document.getElementById('cam-qr-result');
-
-      this.video = video;
-      this.camQrResult = camQrResult;
-
-      const scanner = new QrScanner((video as HTMLVideoElement), result => this.setResult(camQrResult, result), {
-        onDecodeError: error => { },
-        highlightScanRegion: true,
-        highlightCodeOutline: true,
-  
-      });
-  
-      this.scanner = scanner;
-  
-      this.scanner.start().then(() => {
-        QrScanner?.listCameras(true).then(cameras => cameras.forEach(camera => {
-          const option = document.createElement('option');
-          option.value = camera.id;
-          option.text = camera.label;
-        }));
-      });
     }
-    // } else {
-    //   this.scanner = new QrScanner((this.video as HTMLVideoElement), result => this.setResult(this.camQrResult, result), {
-    //     onDecodeError: error => { },
-    //     highlightScanRegion: true,
-    //     highlightCodeOutline: true,
-    //   });
-    // }
+    
     this.isScannerOn = !this.isScannerOn;
     this.cdr.detectChanges();
   }
 
   ngOnInit() { }
+
   ngAfterViewInit(): void {
     // if (this.isScannerOn) {
 
@@ -97,14 +75,14 @@ export class QrComponent implements OnInit {
     this.video = video;
     this.camQrResult = camQrResult
 
-
-
     const scanner = new QrScanner((video as HTMLVideoElement), result => this.setResult(this.camQrResult, result), {
       onDecodeError: error => { },
       highlightScanRegion: true,
       highlightCodeOutline: true,
 
     });
+
+    console.log("scanner: ", scanner);
 
     this.scanner = scanner;
 
@@ -132,21 +110,26 @@ export class QrComponent implements OnInit {
         const str: string = `Cannot mark attendance for ${JSON.parse(result.data).emp_name || "User"}`;
         // this.toastr.success(str);
         (window as any).toast.show(str, "error");
-        history.back(); // ([""]);
+        // history.back(); // ([""]);
 
       }
 
     }, (error) => {
-      this.toggleScanner();
+      // this.toggleScanner();
       console.log("error: ", error);
       const str: string = `Cannot mark attendance for ${JSON.parse(result.data).emp_name || "User"}`;
-      // this.modalHeaderText = str;
-      // this.isModalOpen = true;
+      this.modalHeaderText = str;
+      // setTimeout(() => {
+        
+        this.isModalOpen = true;
+      // }, 1000);
+      // this.scanner.start();
       (window as any).toast.show(str, "error");
-      history.back(); // ([""]);
+      // history.back(); // ([""]);
     });
 
-    this.scanner.stop();
+    this.cdr.detectChanges();
+    this.toggleScanner();
   }
 
   goBack() {
@@ -171,5 +154,6 @@ export class QrComponent implements OnInit {
     if (this.scanner) 
     this.scanner.stop();
 
+    this.destroy$.next();
   }
 }

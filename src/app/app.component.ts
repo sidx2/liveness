@@ -1,23 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import awsconfig from './../aws-exports';
 import { Auth, Amplify } from 'aws-amplify';
 import { Hub } from 'aws-amplify';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from './services/cookie.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+  destroy$ = new Subject<void>();
+
   constructor(private http: HttpClient, private cookieService: CookieService) { 
     const token = this.cookieService.get("token");
     if (token) {
       this.http.post("/kioskapp/syncOfflineClockInAttendance", {
         "requests": [],
         "token": token
-      }).subscribe((data) => {
+      }).pipe(
+        takeUntil(this.destroy$)
+      ).subscribe((data) => {
         console.log("login verified: ", data);
       })
     }
@@ -49,5 +54,9 @@ export class AppComponent implements OnInit {
     }
   };
 
-  
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.destroy$.next();
+  }
 }

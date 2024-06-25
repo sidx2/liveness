@@ -26,6 +26,20 @@ $button-radius: 30px;
         }
     }
 
+    #qrVideoPlaceholder {
+        height: 100%;
+        width: 60%;
+
+        video {
+            width: 100%;
+            height: 100%;
+
+            object-fit: inherit !important;
+            overflow-clip-margin: inherit !important;
+            overflow: inherit !important;
+        }
+    }
+
     .loadingScreen {
         width: 100%;
         height: 100%;
