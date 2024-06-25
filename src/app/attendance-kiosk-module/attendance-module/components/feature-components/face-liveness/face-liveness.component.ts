@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'src/app/services/cookie.service';
 import { Router } from '@angular/router';
 import { AttendanceService } from '../../../services/attendance.service';
-import { Subject, take, takeUntil } from 'rxjs';
+import { Subject, distinctUntilChanged, take, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-face-liveness',
@@ -29,6 +29,9 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
   subText = ""
 
   destroy$ = new Subject<void>();
+
+  prevId: string = "";
+
   isModalOpen = false
   modalHeaderText = "Are you sure you want to continue"
   modalMessage = "Action cannot be undone"
@@ -47,13 +50,20 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.attendanceService.liveness_session.pipe(
-      // takeUntil(this.destroy$),
+      distinctUntilChanged(),
+      takeUntil(this.destroy$),
+      tap((data: any) => {console.log("tapped: ", data);})
       // take(1),
-    ).subscribe(([status, data]) => {
+    ).subscribe(([status, data]: [any, any]) => {
+      console.log("prevId:" , this.prevId);
       console.log("status, data:", status, data);
       if (status == 'success') {
         console.log("")
-        this.initate_liveness_session(data);
+        if (this.prevId !== data.sessionId) {
+          this.prevId = data.sessionId;
+          this.initate_liveness_session(data);
+        }
+        
       }
     })
 
@@ -93,14 +103,14 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
     if (data["isLive"]) {
       console.log("inside isLive: ",);
       this.attendanceService.getImage(data.sessionId).pipe(
-        // takeUntil(this.destroy$),
-        // take(1)
+        take(1),
+        takeUntil(this.destroy$),
       ).subscribe((res: any) => {
         console.log("res in subscribe: ''", res);
         // this.http.post("http://172.16.108.38/attendance/FaceAttendance", {photoData:res, token: this.cookieService.get("token")}).subscribe((data) => {
         this.attendanceService.verifyFace(res).pipe(
-          // takeUntil(this.destroy$),
-          // take(1)
+          take(1),
+          takeUntil(this.destroy$),
         ).subscribe((data: any) => {
           console.log("res in subscribe.subscribe: ''", data);
           if (data.verification_result) {
@@ -109,7 +119,8 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
             const msg = `Attendance was marked successfully for ${user_name}!`;
             // this.toastrService.success(msg);
             (window as any).toast.show(msg, "info");
-            this.router.navigate(["/"]);
+            // this.router.navigate(["/"]);
+            history.back();
           } else {
             this.loadingScreenText = 'Hit Start to start the liveness session';
             this.subText = "";
@@ -120,22 +131,27 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
             (window as any).toast.show(msg, "error");
             // this.isModalOpen = true;
           }
+
+          this.destroy$.next();
         }, (err) => {
           console.log("err:", err);
           const user_name = data.users_list[Object.keys(data?.users_list || {})[0]] || "the user";
           this.modalHeaderText = "Could not mark attendance for the user"
-
+          
           const msg = `Could not mark attendence for ${user_name}!`;
           // this.toastrService.error(msg);
           (window as any).toast.show(msg, "error");
           this.isModalOpen = true;
+          this.destroy$.next();
         })
       }, (error) => {
         // this.toastrService.error(error);
+        this.destroy$.next();
         (window as any).toast.show(error, "error");
       })
     }
 
+    // this.destroy$.next();
     if (data['confidence'] > 70) {
       this.is_live = true;
       this.loadingScreenText = `Liveness check passed, Confidence ${Math.round(Number(data['confidence']))}`
@@ -172,7 +188,6 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
   }
 
   start() {
-    // this.destroy$.next();
     this.loadingScreenText = "Loading ..."
     this.subText = "";
     this.get_liveness_session();

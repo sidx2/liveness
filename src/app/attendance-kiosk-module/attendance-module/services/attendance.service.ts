@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Subject, take, throwError } from 'rxjs';
 import { CookieService } from 'src/app/services/cookie.service';
 
 import { BehaviorSubject } from 'rxjs';
@@ -52,7 +52,7 @@ export class AttendanceService {
     return throwError("Something went wrong while marking attendance using QR");
   }
 
-  public liveness_session: BehaviorSubject<[string, {}]> = new BehaviorSubject<[string, {}]>(['empty', {}]);
+  public liveness_session: Subject<[string, {}]> = new Subject<[string, {}]>(); //['empty', {}]
 
   async get_current_session() {
     return (await Auth.currentSession());
@@ -64,7 +64,9 @@ export class AttendanceService {
     this.http.post("/kioskapp/syncOfflineClockInAttendance", {
       "requests": [],
       "token": this.cookieService.get("token")
-    }).subscribe(async (data) => {
+    }).pipe(
+      take(1)
+    ).subscribe(async (data) => {
       console.log("pre liveness data: ", data);
       console.log("hitting api...")
       let res: any = await fetch('http://172.16.108.38/liveness/api/');
