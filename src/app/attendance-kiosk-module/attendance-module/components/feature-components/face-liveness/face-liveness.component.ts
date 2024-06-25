@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 // import { LivenessService } from './liveness.service';
 import * as AWS from 'aws-sdk';
 import awsmobile from 'src/aws-exports';
@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'src/app/services/cookie.service';
 import { Router } from '@angular/router';
 import { AttendanceService } from '../../../services/attendance.service';
+import { Subject, take, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-face-liveness',
@@ -14,7 +15,7 @@ import { AttendanceService } from '../../../services/attendance.service';
   styleUrls: ['./face-liveness.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FaceLivenessComponent implements OnInit {
+export class FaceLivenessComponent implements OnInit, OnDestroy {
 
   public counter = 21;
 
@@ -27,6 +28,7 @@ export class FaceLivenessComponent implements OnInit {
   loadingScreenText = 'Loading ...'
   subText = ""
 
+  destroy$ = new Subject<void>();
   isModalOpen = false
   modalHeaderText = "Are you sure you want to continue"
   modalMessage = "Action cannot be undone"
@@ -44,9 +46,13 @@ export class FaceLivenessComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.attendanceService.liveness_session.subscribe(([status, data]) => {
+    this.attendanceService.liveness_session.pipe(
+      takeUntil(this.destroy$),
+      take(1),
+    ).subscribe(([status, data]) => {
       console.log("status, data:", status, data);
       if (status == 'success') {
+        console.log("")
         this.initate_liveness_session(data);
       }
     })
@@ -86,10 +92,16 @@ export class FaceLivenessComponent implements OnInit {
     console.log("handleLivenessAnalysisResults data", data);
     if (data["isLive"]) {
       console.log("inside isLive: ",);
-      this.attendanceService.getImage(data.sessionId).subscribe((res: any) => {
+      this.attendanceService.getImage(data.sessionId).pipe(
+        takeUntil(this.destroy$),
+        take(1)
+      ).subscribe((res: any) => {
         console.log("res in subscribe: ''", res);
         // this.http.post("http://172.16.108.38/attendance/FaceAttendance", {photoData:res, token: this.cookieService.get("token")}).subscribe((data) => {
-        this.attendanceService.verifyFace(res).subscribe((data: any) => {
+        this.attendanceService.verifyFace(res).pipe(
+          takeUntil(this.destroy$),
+          take(1)
+        ).subscribe((data: any) => {
           console.log("res in subscribe.subscribe: ''", data);
           if (data.verification_result) {
 
@@ -160,7 +172,9 @@ export class FaceLivenessComponent implements OnInit {
   }
 
   start() {
+    this.destroy$.next();
     this.loadingScreenText = "Loading ..."
+    this.subText = "";
     this.get_liveness_session();
     this.cameraOn = true;
   }
@@ -182,6 +196,7 @@ export class FaceLivenessComponent implements OnInit {
   }
 
   toggleCamera() {
+    this.destroy$.next();
     this.cameraOn = !this.cameraOn;
     this.liveness_session_complete = true;
     this.start_liveness_session = false;
@@ -191,6 +206,12 @@ export class FaceLivenessComponent implements OnInit {
     this.is_live = false;
     // Force remove the ReactDOM
     this.faceliveness.ngOnDestroy();
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.destroy$.next();
   }
 
 }
