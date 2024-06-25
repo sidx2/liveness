@@ -47,8 +47,8 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.attendanceService.liveness_session.pipe(
-      takeUntil(this.destroy$),
-      take(1),
+      // takeUntil(this.destroy$),
+      // take(1),
     ).subscribe(([status, data]) => {
       console.log("status, data:", status, data);
       if (status == 'success') {
@@ -93,14 +93,14 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
     if (data["isLive"]) {
       console.log("inside isLive: ",);
       this.attendanceService.getImage(data.sessionId).pipe(
-        takeUntil(this.destroy$),
-        take(1)
+        // takeUntil(this.destroy$),
+        // take(1)
       ).subscribe((res: any) => {
         console.log("res in subscribe: ''", res);
         // this.http.post("http://172.16.108.38/attendance/FaceAttendance", {photoData:res, token: this.cookieService.get("token")}).subscribe((data) => {
         this.attendanceService.verifyFace(res).pipe(
-          takeUntil(this.destroy$),
-          take(1)
+          // takeUntil(this.destroy$),
+          // take(1)
         ).subscribe((data: any) => {
           console.log("res in subscribe.subscribe: ''", data);
           if (data.verification_result) {
@@ -172,7 +172,7 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
   }
 
   start() {
-    this.destroy$.next();
+    // this.destroy$.next();
     this.loadingScreenText = "Loading ..."
     this.subText = "";
     this.get_liveness_session();
