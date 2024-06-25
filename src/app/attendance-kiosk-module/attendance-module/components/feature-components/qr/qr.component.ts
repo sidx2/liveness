@@ -132,6 +132,8 @@ export class QrComponent implements OnInit {
         const str: string = `Cannot mark attendance for ${JSON.parse(result.data).emp_name || "User"}`;
         // this.toastr.success(str);
         (window as any).toast.show(str, "error");
+        history.back(); // ([""]);
+
       }
 
     }, (error) => {
