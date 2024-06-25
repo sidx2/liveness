@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import QrScanner from "qr-scanner"
 import { AttendanceService } from '../../../services/attendance.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'src/app/services/cookie.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-qr2',
@@ -26,7 +28,20 @@ export class QrComponent implements OnInit {
     private attendanceService: AttendanceService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-  ) { }
+    private cookieService: CookieService,
+    private http: HttpClient,
+  ) { 
+    const token = this.cookieService.get("token");
+    
+    if (token) {
+      this.http.post("/kioskapp/syncOfflineClockInAttendance", {
+        "requests": [],
+        "token": token
+      }).subscribe((data) => {
+        console.log("login verified: ", data);
+      })
+    }
+  }
 
   toggleScanner() {
     console.log("toggling scanner!")
@@ -146,5 +161,13 @@ export class QrComponent implements OnInit {
     console.log("modal cancelled");
     history.back();
     this.isModalOpen = false;
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if (this.scanner) 
+    this.scanner.stop();
+
   }
 }

@@ -5,19 +5,19 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IAuthState, LoginCredentials } from 'src/app/auth-module/models/auth';
 import { loginFailure, loginRequest, loginSuccess } from 'src/app/auth-module/store/auth.actions';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { Actions, ofType } from '@ngrx/effects';
 import { ToastrService } from 'ngx-toastr';
 
-const a = {
-  "status": 1,
-  "message": 
-  "Successfull", 
-  "review_data": { "token": "402d8834352f8f8dcfa12d54f584a789", 
-  "logo": "https:\/\/darwinbox-data-qa-mum.s3.ap-south-1.amazonaws.com\/QA_5a841e4e988e2_14\/logo\/5eff18834a5fa__tenant-avatar-14_1094962792.jpg", 
-  "company_name": "Bob", 
-  "user_id": "a666ad8c795e04" }
-}
+// const a = {
+//   "status": 1,
+//   "message": 
+//   "Successfull", 
+//   "review_data": { "token": "402d8834352f8f8dcfa12d54f584a789", 
+//   "logo": "https:\/\/darwinbox-data-qa-mum.s3.ap-south-1.amazonaws.com\/QA_5a841e4e988e2_14\/logo\/5eff18834a5fa__tenant-avatar-14_1094962792.jpg", 
+//   "company_name": "Bob", 
+//   "user_id": "a666ad8c795e04" }
+// }
 
 @Component({
   selector: 'app-login',
@@ -43,8 +43,9 @@ export class LoginComponent {
 
     this.actions$.pipe(
       ofType(loginSuccess),
-      takeUntil(this.destroySubject)
-
+      takeUntil(this.destroySubject),
+      take(1),
+      
     ).subscribe((res) => {
       if (res.status === 1) {
 

@@ -14,7 +14,7 @@ export class attendanceComponent {
   ) { }
 
   onLogout() {
-    this.cookieService.clearAll();
-    this.router.navigate(["/auth"])
+    if (this.cookieService.clearAll())
+      this.router.navigate(["/auth"])
   }
 }
