@@ -95,7 +95,10 @@ export class QrComponent implements OnInit {
     });
     // }
   }
-  setResult(label: any, result: any) {
+
+  setResult = (label: any, result: any) => {
+    debugger;
+    this.loadingScreenMessage = "Processing...";
     console.log(result.data);
     this.beep.play();
     this.attendanceService.markAttendenceUsingQR(result.data).subscribe((data: any) => {
@@ -103,29 +106,26 @@ export class QrComponent implements OnInit {
       if (!(data.response instanceof Array)) {
         console.log("res data: ", result.data);
         const str: string = `Attendence was marked successfully for ${JSON.parse(result.data).emp_name}`;
-        // this.toastr.success(str);
         (window as any).toast.show(str, "ok");
+
         history.back();
       } else {
+        this.loadingScreenMessage = "Hit Start to start the scanning...";
         const str: string = `Cannot mark attendance for ${JSON.parse(result.data).emp_name || "User"}`;
-        // this.toastr.success(str);
+
         (window as any).toast.show(str, "error");
-        // history.back(); // ([""]);
 
       }
 
     }, (error) => {
-      // this.toggleScanner();
       console.log("error: ", error);
+      this.loadingScreenMessage = "Hit Start to start the scanning...";
       const str: string = `Cannot mark attendance for ${JSON.parse(result.data).emp_name || "User"}`;
       this.modalHeaderText = str;
-      // setTimeout(() => {
-        
-        this.isModalOpen = true;
-      // }, 1000);
-      // this.scanner.start();
+      
       (window as any).toast.show(str, "error");
-      // history.back(); // ([""]);
+      
+      this.cdr.detectChanges();
     });
 
     this.cdr.detectChanges();

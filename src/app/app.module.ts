@@ -50,6 +50,19 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     
   ],
   
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: ErrorInterceptor,
+    //   multi: true
+    // }
+  ],
 })
 export class AppModule { }

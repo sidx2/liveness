@@ -5,6 +5,7 @@ import { attendanceKioskComponent } from './components/attendance-kiosk/attendan
 import { attendanceKioskRoutingModule } from './attendance-kiosk-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
+import { ErrorInterceptor } from '../interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -14,12 +15,6 @@ import { AuthInterceptor } from '../interceptors/auth.interceptor';
     RouterModule,
     attendanceKioskRoutingModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
-  ],
+  
 })
 export class attendanceKioskModule { }

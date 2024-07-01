@@ -1,10 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-// import { LivenessService } from './liveness.service';
 import * as AWS from 'aws-sdk';
 import awsmobile from 'src/aws-exports';
 import { FaceLivenessReactWrapperComponent } from '../FaceLivenessReactWrapperComponent';
-import { HttpClient } from '@angular/common/http';
-import { CookieService } from 'src/app/services/cookie.service';
 import { Router } from '@angular/router';
 import { AttendanceService } from '../../../services/attendance.service';
 import { Subject, distinctUntilChanged, take, takeUntil, tap } from 'rxjs';
