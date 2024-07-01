@@ -97,7 +97,6 @@ export class QrComponent implements OnInit {
   }
 
   setResult = (label: any, result: any) => {
-    debugger;
     this.loadingScreenMessage = "Processing...";
     console.log(result.data);
     this.beep.play();
@@ -107,6 +106,7 @@ export class QrComponent implements OnInit {
         console.log("res data: ", result.data);
         const str: string = `Attendence was marked successfully for ${JSON.parse(result.data).emp_name}`;
         (window as any).toast.show(str, "ok");
+        this.cdr.detectChanges();
 
         history.back();
       } else {
@@ -114,6 +114,7 @@ export class QrComponent implements OnInit {
         const str: string = `Cannot mark attendance for ${JSON.parse(result.data).emp_name || "User"}`;
 
         (window as any).toast.show(str, "error");
+        this.cdr.detectChanges();
 
       }
 
@@ -124,8 +125,8 @@ export class QrComponent implements OnInit {
       this.modalHeaderText = str;
       
       (window as any).toast.show(str, "error");
-      
       this.cdr.detectChanges();
+      
     });
 
     this.cdr.detectChanges();
