@@ -4,26 +4,76 @@
     <div class="p-fluid">
       <div class="p-floatLabel">
         <label for="username">Username</label>
-        
+
         <!-- <dbx-textinput ngDefaultControl placeholder="Username" id="username" formControlName="username" type="username" ></dbx-textinput> -->
         <input id="username" formControlName="username" type="username" class="p-field p-inputtext-lg" pInputText>
-        <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)" class="errMsg">
-          
+        <div
+          *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)"
+          class="errMsg">
+
         </div>
       </div>
-      
-      <div class="p-floatLabel">
-      <label for="password">Password</label>
-      <!-- <dbx-textinput ngDefaultControl placeholder="Password" id="password" formControlName="password" type="password" ></dbx-textinput> -->
 
-      <input id="password" formControlName="password" type="password" class="p-field p-inputtext-lg" pInputText>
-      <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="errMsg">
-        
+      <div class="p-floatLabel">
+        <label for="password">Password</label>
+        <!-- <dbx-textinput ngDefaultControl placeholder="Password" id="password" formControlName="password" type="password" ></dbx-textinput> -->
+
+        <input id="password" formControlName="password" type="password" class="p-field p-inputtext-lg" pInputText>
+        <div
+          *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+          class="errMsg">
+
+        </div>
       </div>
+
+      <button type="submit" class="p-button">Login</button>
     </div>
-    
-    <button type="submit" class="p-button">Login</button>
-  </div>
-</form>
+  </form>
 
 </div>
+
+<!-- new login page -->
+<!-- <div class="loginPageContainer">
+  <div _ngcontent-lxb-c93="" class="flex-grow-1 d-flex align-items-center justify-content-center">
+    <div _ngcontent-lxb-c93="" class="logincontainer">
+      <div _ngcontent-lxb-c93="" class="logoContainer"><img _ngcontent-lxb-c93="" class="logoImage"
+          src="https://darwinbox-data-mumbai.s3.ap-south-1.amazonaws.com/QA_a60f82ee054757_88/logo/a8750367964edd54c1eda2__tenant-avatar-88_2111082321.png">
+      </div>
+      <div _ngcontent-lxb-c93="" class="formContainer">
+        <div _ngcontent-lxb-c93="" class="title">Vendor Sign in</div>
+        <div _ngcontent-lxb-c93="" class="loginForm">
+          <form _ngcontent-lxb-c93="" novalidate="" class="ng-untouched ng-pristine ng-invalid">
+            <div _ngcontent-lxb-c93="" class="form-group"><label _ngcontent-lxb-c93="">Email Address</label><input
+                _ngcontent-lxb-c93="" type="text" placeholder="Enter email ID" formcontrolname="email"
+                class="form-control ng-untouched ng-pristine ng-invalid">
+              <div _ngcontent-lxb-c93="" class="invalid-feedback">Email Id doesn't exist</div>
+            </div>
+            <div _ngcontent-lxb-c93="" class="form-group mt-5 position-relative"><label
+                _ngcontent-lxb-c93="">Password</label><input _ngcontent-lxb-c93="" placeholder="Enter password"
+                formcontrolname="password" class="form-control ng-untouched ng-pristine ng-invalid" type="password">
+              <div _ngcontent-lxb-c93="" class="db-Showpassword"><img _ngcontent-lxb-c93="" src="assets/icons/show.svg">
+              </div>
+              <div _ngcontent-lxb-c93="" class="invalid-feedback">Incorrect password</div>
+            </div>
+            <div _ngcontent-lxb-c93="" class="d-flex justify-content-end buttonContainer"><button _ngcontent-lxb-c93=""
+                type="submit" class="loginPrimary" disabled=""><span _ngcontent-lxb-c93="">SIGN
+                  IN</span></button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div _ngcontent-lxb-c93="" class="footerContainer">
+    <div _ngcontent-lxb-c93="" class="lightFadedtext">Powered By</div>
+    <div _ngcontent-lxb-c93="" class="dboxLogo"><a _ngcontent-lxb-c93="" href="https://darwinbox.com"
+        target="_blank"><img _ngcontent-lxb-c93="" src="assets/images/dbox-faded.svg"></a></div>
+    <div _ngcontent-lxb-c93="" class="tncContainer">
+      <div _ngcontent-lxb-c93="" class="copyText">© 2022 Darwinbox Digital Solutions Pvt Ltd.</div>
+      <div _ngcontent-lxb-c93="" class="linksContainer"><a _ngcontent-lxb-c93=""
+          href="https://darwinbox.com/cookie-policy" target="_blank" class="linkItem">Cookie Policy</a><a
+          _ngcontent-lxb-c93="" href="https://darwinbox.com/terms-of-use" target="_blank" class="linkItem">Terms of
+          Use</a><a _ngcontent-lxb-c93="" href="https://darwinbox.com/privacy-policy" target="_blank"
+          class="linkItem">Privacy Policy</a></div>
+    </div>
+  </div>
+</div> -->

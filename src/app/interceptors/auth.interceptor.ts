@@ -14,12 +14,16 @@ import { CookieService } from '../services/cookie.service';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router, private cookieService: CookieService) {}
+  constructor(private router: Router, private cookieService: CookieService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    console.log("inside intercept", request);
+    
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
+        if ((!request.url.includes("auth")) && error.status === 401) {
+          console.log("inside intercept 401")
+
           this.cookieService.clearAll();
           this.router.navigate(['/auth']);
           (window as any).toast.show("Session was expired. You need to login again.");
