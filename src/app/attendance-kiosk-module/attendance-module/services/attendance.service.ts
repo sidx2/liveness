@@ -65,7 +65,7 @@ export class AttendanceService {
       "requests": [],
       "token": this.cookieService.get("token")
     }).pipe(
-      take(1)
+      // take(1)
     ).subscribe(async (data) => {
       console.log("pre liveness data: ", data);
       console.log("hitting api...")

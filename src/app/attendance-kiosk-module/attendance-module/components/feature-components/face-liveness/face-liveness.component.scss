@@ -19,6 +19,13 @@ $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        h1 {
+                color: black; 
+                margin: 0;
+                font-size: 1.5rem;
+                font-weight: 500;
+        }
     }
 }
 
@@ -72,6 +79,9 @@ button{
     padding-top: 5px;
 }
 
+.disabled {
+    background-color: gray;
+}
 .submit-button {
     padding: 14px 40px;
 }

@@ -28,9 +28,9 @@
 </ng-template>
 
 <div class="controls">
+    <button routerLink="/">Go Back</button>
     <button (click)="toggleCamera()" *ngIf="cameraOn; else cameraOff">Stop</button>
         <ng-template #cameraOff>
             <button (click)="start()">Start</button>
         </ng-template>
-    <button routerLink="/">Go Back</button>
 </div>

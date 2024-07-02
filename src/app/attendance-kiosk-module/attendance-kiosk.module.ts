@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { attendanceKioskComponent } from './components/attendance-kiosk/attendance-kiosk.component';
@@ -12,9 +12,15 @@ import { ErrorInterceptor } from '../interceptors/error.interceptor';
     attendanceKioskComponent
   ],
   imports: [
+    CommonModule,
     RouterModule,
     attendanceKioskRoutingModule,
   ],
   
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    
+  ],
+
 })
 export class attendanceKioskModule { }

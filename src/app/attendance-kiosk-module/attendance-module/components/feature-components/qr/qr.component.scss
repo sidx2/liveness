@@ -11,6 +11,7 @@ $button-radius: 30px;
     border-radius: 10px;
     margin: 10px;
     height: 80vh;
+    margin-top: 10px;
 
     #qrVideo {
         height: 100%;
@@ -43,10 +44,17 @@ $button-radius: 30px;
     }
 
     .loadingScreen {
+        h1 {
+           color: black; 
+           margin: 0;
+           font-size: 1.5rem;
+           font-weight: 600;
+        }
         width: 100%;
         height: 100%;
 
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
 
@@ -57,7 +65,10 @@ $button-radius: 30px;
         object-fit: inherit !important;
         overflow-clip-margin: inherit !important;
         overflow: inherit !important;
+
     }
+
+
 }
 
 

@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import * as AWS from 'aws-sdk';
 import awsmobile from 'src/aws-exports';
 import { FaceLivenessReactWrapperComponent } from '../FaceLivenessReactWrapperComponent';
 import { Router } from '@angular/router';
 import { AttendanceService } from '../../../services/attendance.service';
-import { Subject, distinctUntilChanged, take, takeUntil, tap } from 'rxjs';
+import { Subject, Subscription, distinctUntilChanged, take, takeUntil, tap } from 'rxjs';
+import { CameraService } from '../../../services/camera.service';
 
 @Component({
   selector: 'app-face-liveness',
@@ -15,16 +16,21 @@ import { Subject, distinctUntilChanged, take, takeUntil, tap } from 'rxjs';
 export class FaceLivenessComponent implements OnInit, OnDestroy {
 
   public counter = 21;
+  hasCamera: boolean = false;
+  permissionState: PermissionState = 'prompt';
+
+  private subscriptions: Subscription = new Subscription();
 
   start_liveness_session = false;
   liveness_session_complete = false;
   session_id = null;
   is_live = false;
   confidence = 0;
-  cameraOn: boolean = true;
+  cameraOn: boolean = false;
   loadingScreenText = 'Loading ...'
   subText = ""
 
+  shouldStartTheSession = true;
   destroy$ = new Subject<void>();
 
   prevId: string = "";
@@ -41,18 +47,60 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
     // private faceLivenessService: LivenessService,
     private router: Router,
     private attendanceService: AttendanceService,
+    private cameraService: CameraService,
+    private cdr: ChangeDetectorRef,
   ) {
-
   }
 
   ngOnInit(): void {
+    // if (!this.hasCamera) {
+
+    //   this.loadingScreenText = "No Access to camera"
+    //   this.subText = "Please allow camera access";
+    // } else {
+    //   this.loadingScreenText = 'Loading ...'
+    //   this.cameraOn = true;
+    // }
+
+    this.subscriptions.add(
+      this.cameraService.hasCamera$.pipe(
+        takeUntil(this.destroy$)
+      ).subscribe(hasCamera => {
+        this.hasCamera = hasCamera;
+        this.cdr.detectChanges();
+        if (hasCamera) {
+          this.requestCameraPermission();
+        }
+      })
+    );
+
+    this.subscriptions.add(
+      this.cameraService.permissionState$.subscribe(state => {
+        this.permissionState = state;
+        console.log("permissionState: ", state);
+        if (state === 'granted') {
+          this.cameraOn = true;
+          this.loadingScreenText = "Loading...";
+          this.subText = "";
+          this.hasCamera = true;
+          this.cdr.detectChanges();
+          this.get_liveness_session();
+        } else if (state === "denied") {
+          this.cameraOn = false;
+          this.hasCamera = false;
+          this.loadingScreenText = "No Access to camera"
+          this.subText = "Please allow camera access";  
+          this.cdr.detectChanges();
+        }
+      })
+    );
+
     this.attendanceService.liveness_session.pipe(
       distinctUntilChanged(),
       takeUntil(this.destroy$),
-      tap((data: any) => {console.log("tapped: ", data);})
+      tap((data: any) => { console.log("tapped: ", data); })
       // take(1),
     ).subscribe(([status, data]: [any, any]) => {
-      console.log("prevId:" , this.prevId);
       console.log("status, data:", status, data);
       if (status == 'success') {
         console.log("")
@@ -60,7 +108,7 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
           this.prevId = data.sessionId;
           this.initate_liveness_session(data);
         }
-        
+
       }
     })
 
@@ -79,7 +127,8 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
     }).catch(err => {
       console.log(err)
     });
-    this.get_liveness_session()
+
+    if (this.hasCamera) this.get_liveness_session();
   }
 
   public handleErrors(err: any) {
@@ -87,8 +136,8 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
     this.liveness_session_complete = true;
     this.start_liveness_session = false;
     this.cameraOn = false;
-    this.loadingScreenText = 'Error  during liveness detection'
-    this.subText = err;
+    this.loadingScreenText = 'Error during liveness detection'
+    this.subText = "Ensure your face is clearly visible!";
     this.is_live = false;
     // Force remove the ReactDOM
     this.faceliveness.ngOnDestroy();
@@ -134,7 +183,7 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
           console.log("err:", err);
           const user_name = data.users_list[Object.keys(data?.users_list || {})[0]] || "the user";
           this.modalHeaderText = "Could not mark attendance for the user"
-          
+
           const msg = `Could not mark attendence for ${user_name}!`;
           // this.toastrService.error(msg);
           (window as any).toast.show(msg, "error");
@@ -179,16 +228,34 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
   }
 
   get_liveness_session() {
-    this.start_liveness_session = false;
-    // this.cameraOn = false;
-    this.attendanceService.get_face_liveness_session();
+    if (this.hasCamera) {
+
+      this.start_liveness_session = false;
+      // this.cameraOn = false;
+      this.attendanceService.get_face_liveness_session();
+    } else {
+      this.loadingScreenText = "No Access to camera"
+      this.subText = "Please allow camera access";
+      // this.get_liveness_session();
+      this.cameraOn = false;
+    }
   }
 
   start() {
-    this.loadingScreenText = "Loading ..."
-    this.subText = "";
-    this.get_liveness_session();
-    this.cameraOn = true;
+    console.log("has cam in start ? : ", this.hasCamera);
+    if (this.hasCamera) {
+
+      this.loadingScreenText = "Loading ...";
+      this.subText = "";
+      this.get_liveness_session();
+      this.cameraOn = true;
+    } else {
+      (window as any).toast.show("Allow camera access to continue!", "error");
+      this.loadingScreenText = "No Access to camera"
+      this.subText = "Please allow camera access";
+      // this.get_liveness_session();
+      this.cameraOn = false;
+    }
   }
 
   onModalConfirm() {
@@ -208,16 +275,24 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
   }
 
   toggleCamera() {
-    this.destroy$.next();
     this.cameraOn = !this.cameraOn;
     this.liveness_session_complete = true;
     this.start_liveness_session = false;
-    this.cameraOn = false;
     this.loadingScreenText = 'Hit Start to start the liveness session';
     this.subText = "";
     this.is_live = false;
     // Force remove the ReactDOM
     this.faceliveness.ngOnDestroy();
+  }
+
+  requestCameraPermission() {
+    this.cameraService.requestCameraPermission()
+      .then(stream => {
+        console.log('Camera access granted');
+      })
+      .catch(err => {
+        console.error('Camera access denied', err);
+      });
   }
 
   ngOnDestroy(): void {

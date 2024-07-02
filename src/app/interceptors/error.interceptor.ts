@@ -12,7 +12,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log("inside error interceptor!")
+    console.log("inside error interceptor!", request);
     return next.handle(request).pipe(
       catchError((errorResponse: HttpErrorResponse) => {
         if (errorResponse instanceof HttpErrorResponse) {
