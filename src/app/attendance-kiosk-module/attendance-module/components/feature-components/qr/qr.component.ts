@@ -133,6 +133,9 @@ export class QrComponent implements OnInit, AfterViewInit, OnDestroy {
       ).subscribe((state) => {
         this.permissionState = state;
         if (state === 'granted') {
+
+          this.loadingScreenMessage = '';
+          this.subText = '';
           this.isScannerOn = true;
           this.hasCamera = true;
           if (this.scanner) this.scanner.start();
