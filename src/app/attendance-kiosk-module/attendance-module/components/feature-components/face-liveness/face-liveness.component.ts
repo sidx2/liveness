@@ -15,7 +15,6 @@ import { CameraService } from '../../../services/camera.service';
 })
 export class FaceLivenessComponent implements OnInit, OnDestroy {
 
-  public counter = 21;
   hasCamera: boolean = false;
   permissionState: PermissionState = 'prompt';
 
@@ -86,10 +85,12 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
           this.cdr.detectChanges();
           this.get_liveness_session();
         } else if (state === "denied") {
+          this.liveness_session_complete = true;
+          this.start_liveness_session = false;
           this.cameraOn = false;
           this.hasCamera = false;
           this.loadingScreenText = "No Access to camera"
-          this.subText = "Please allow camera access";  
+          this.subText = "Please allow camera access";
           this.cdr.detectChanges();
         }
       })
@@ -106,7 +107,8 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
         console.log("")
         if (this.prevId !== data.sessionId) {
           this.prevId = data.sessionId;
-          this.initate_liveness_session(data);
+          if (this.hasCamera)
+            this.initate_liveness_session(data);
         }
 
       }
@@ -128,7 +130,7 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
       console.log(err)
     });
 
-    if (this.hasCamera) this.get_liveness_session();
+    if (this.hasCamera === true) this.get_liveness_session();
   }
 
   public handleErrors(err: any) {
