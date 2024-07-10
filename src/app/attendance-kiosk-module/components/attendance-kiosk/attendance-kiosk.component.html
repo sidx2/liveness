@@ -1,10 +1,35 @@
 <div class="navbar">
     <div class="logo">
-        <img src="https://darwinbox-data-prod-mum.s3.ap-south-1.amazonaws.com/INSTANCE1_56dd22c69ff1d_11/logo/a62cbf79d6ad28__tenant-avatar-11_341834828.png" alt="">
+        <img src="https://darwinbox-data-prod-mum.s3.ap-south-1.amazonaws.com/INSTANCE1_56dd22c69ff1d_11/logo/a62cbf79d6ad28__tenant-avatar-11_341834828.png"
+            alt="">
     </div>
     <div class="actions">
         <a routerLink="/reports">Reports</a>
-        <a (click)="onLogout()" class="logout-button">Logout</a>
+        <!-- <a (click)="onLogout()" class="logout-button">Logout</a> -->
+        <div class="user-avatar dropdown_user" (click)="toggleDropdown()">
+
+            <div class="initials_avatar">{{userEmailInitials}}</div>
+            <div class="dropdown-menu" *ngIf="dropdownOpen">
+
+                <div class="pdb-16">
+                    <div class="user_profile">
+                        <div class="img_avtr">
+                            <div class="initials_avatar xl-size">{{userEmailInitials}}</div>
+
+                        </div>
+                        <span>{{userEmail}}</span>
+                    </div>
+                </div>
+
+                <div class="dropdown-item">
+                    <a>
+                        <img src="/ms/dboxuilibrary/assets/dboxuilib_dist/www/assets/images/logout.svg">
+                        <a (click)="onLogout()"> Logout </a>
+                    </a>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
 <router-outlet></router-outlet>

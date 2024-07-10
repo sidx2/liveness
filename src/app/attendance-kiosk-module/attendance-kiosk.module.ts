@@ -13,6 +13,7 @@ import { ErrorInterceptor } from '../interceptors/error.interceptor';
   ],
   imports: [
     RouterModule,
+    CommonModule,
     attendanceKioskRoutingModule,
   ],
   

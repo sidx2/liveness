@@ -4,8 +4,9 @@ $font-family: 'Helvetica Neue', sans-serif;
 $button-radius: 30px;
 $hover-color: darken($primary-color, 10%);
 $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$dbxDefaultFontFamily: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
 
- button{
+button {
   background-color: var(--dbox-primary);
   border-color: var(--dbox-primary);
   color: white;
@@ -27,7 +28,7 @@ $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   align-items: center;
   background-color: $background-color;
   height: 68px;
-  
+
   .logo {
     background-color: #fff;
     height: 100%;
@@ -35,24 +36,28 @@ $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     justify-content: center;
     align-items: center;
     margin-left: 50px;
+
     .menu-logo {
       background-color: $background-color;
     }
   }
 
   .actions {
-    button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
       background-color: #0d6aff;
       border-color: #0d6aff;
       color: white;
-    
+
       background-color: black;
       outline: none;
       border-radius: 3px;
       cursor: pointer;
       padding: 5px 12px;
       border: 0.5px solid transparent;
-    
+
       font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
     }
   }
@@ -63,21 +68,21 @@ a {
   text-decoration: none;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.1em;
   transition: color 0.3s ease, text-decoration 0.3s ease;
-  
+
   // Add an underline effect on hover
   &:hover {
     color: #2980b9; // Slightly darker primary color for hover
     text-decoration: underline;
     cursor: pointer;
   }
-  
+
   // Style for visited links
   &:visited {
     color: #2c3e50; // Secondary color
   }
-  
+
   // Focus and active states for accessibility and interactivity
   &:focus,
   &:active {
@@ -90,8 +95,167 @@ a {
 .navbar a {
   color: white;
   padding: 0.5em 1em;
-  
-  &:hover {
-    color: #e6e6e6; // Lighten white color for hover
+
+}
+
+
+.actions {
+  position: relative;
+  margin-right: 10px;
+}
+
+.user-avatar {
+  cursor: pointer;
+  position: relative;
+
+  .initials_avatar {
+    background: rgb(232, 236, 241);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(75, 92, 114);
+    text-align: center;
+    display: inline-block;
+    line-height: 38px;
+    vertical-align: middle;
+    font-family: var(--dbxDefaultFontFamily);
   }
+}
+
+.user-avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.dropdown-menu {
+  position: absolute;
+  min-width: 180px;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 10;
+
+  padding: 5px;
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .dropdown-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      margin: 0;
+      width: 100%;
+
+      a {
+        margin-left: 3px;
+        width: auto;
+      }
+    }
+
+    span {
+      padding: 7px;
+      color: black;
+    }
+
+
+    display: flex;
+    align-items: center;
+    color: rgb(42, 51, 62);
+    cursor: pointer;
+    user-select: none;
+    padding: 3px;
+  }
+
+  .pdb-16 {
+
+    .user_profile {
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      margin: 5px;
+
+      .img_avtr {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        .initials_avatar {
+          background: rgb(232, 236, 241);
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          font-size: 22px;
+          font-weight: 500;
+          color: rgb(75, 92, 114);
+          text-align: center;
+          display: inline-block;
+          line-height: 58px;
+          vertical-align: middle;
+          font-family: var(--dbxDefaultFontFamily);
+          margin-bottom: 5px;
+        }
+
+        constructed stylesheet .no-select {
+          user-select: none !important;
+        }
+
+        constructed stylesheet .xl-size {
+          width: 60px !important;
+          height: 60px !important;
+          display: grid !important;
+          place-content: center !important;
+          font-size: 17px !important;
+        }
+
+        img {
+          width: 50px;
+          height: 50px;
+        }
+
+      }
+
+      span {
+        font-size: 1.3rem;
+        margin-left: 10px;
+        width: 100%;
+      }
+    }
+
+  }
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+  background-color: #efefef;
+}
+
+.dropdown-menu a:hover {
+  background-color: rgb(232, 229, 229);
+  
+  a {
+     background-color: rgb(232, 229, 229);
+
+   }
 }
