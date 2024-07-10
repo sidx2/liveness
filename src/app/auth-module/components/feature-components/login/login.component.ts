@@ -52,6 +52,7 @@ export class LoginComponent {
         console.log("res: ", res);
 
         this.cookieService.set("token", res.review_data.token, parseInt(res.exp) || 60 * 60 * 24);
+        this.cookieService.set("user_email", this.loginForm.value.username, parseInt(res.exp) || 60 * 60 * 24);
         this.cookieService.set("user_id", res.review_data.user_id, parseInt(res.exp) || 60 * 60 * 24);
         const welcomeText = `Welcome back! ${res?.review_data?.company_name}`;
         // this.toastr.success(welcomeText)
