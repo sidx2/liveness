@@ -1,0 +1,41 @@
+<div class="reports-container">
+  <div class="heading">
+    <a routerLink="/">
+
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <p>Attendance Kiosk Reports!</p>
+  </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Employee ID</th>
+          <th>Employee Name</th>
+          <th>Face detection score</th>
+          <th>Liveness score</th>
+          <th>Image</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td>{{item.date.split(" ")[0]}}</td>
+          <td>{{item.empId}}</td>
+          <td>{{item.empName}}</td>
+          <td>{{item.recog_confidence}}</td>
+          <td>{{item.live_confidence}}</td>
+          <td>
+            <div class="preview-container">
+              <img class="preview-image" src="{{item.image}}" alt="User image" width="100px" />
+              <div class="preview-popup">
+                <img class="magnified-image" src="{{item.image}}" alt="User image preview" />
+              </div>
+            </div>
+          </td>
+          <td>{{item.date.split(" ")[1]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

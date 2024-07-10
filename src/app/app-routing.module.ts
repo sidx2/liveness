@@ -10,6 +10,10 @@ const routes: Routes = [
     loadChildren: () => import('./attendance-kiosk-module/attendance-kiosk.module').then(m => m.attendanceKioskModule),
   },
   {
+    path: "reports",
+    loadChildren: () => import("./attendance-kiosk-module/reports-module/reports.module").then(m => m.ReportsModule),
+  },
+  {
     canActivate: [logoutGuard],
     path: 'auth',
     loadChildren: () => import('./auth-module/auth.module').then(m => m.AuthModule),

@@ -33,7 +33,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     BarcodeScannerLivestreamModule,
     // MatGridListModule,
     // AmplifyAuthenticatorModule,
-    // MatIconModule,
+    MatIconModule,
     NgSelectModule,
     
     

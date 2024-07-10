@@ -5,6 +5,7 @@ import { FaceLivenessReactWrapperComponent } from '../FaceLivenessReactWrapperCo
 import { Router } from '@angular/router';
 import { AttendanceService } from '../../../services/attendance.service';
 import { Subject, distinctUntilChanged, take, takeUntil, tap } from 'rxjs';
+import { CookieService } from 'src/app/services/cookie.service';
 
 @Component({
   selector: 'app-face-liveness',
@@ -41,6 +42,8 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
     // private faceLivenessService: LivenessService,
     private router: Router,
     private attendanceService: AttendanceService,
+    private cookieService: CookieService,
+
   ) {
 
   }
@@ -49,10 +52,10 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
     this.attendanceService.liveness_session.pipe(
       distinctUntilChanged(),
       takeUntil(this.destroy$),
-      tap((data: any) => {console.log("tapped: ", data);})
+      tap((data: any) => { console.log("tapped: ", data); })
       // take(1),
     ).subscribe(([status, data]: [any, any]) => {
-      console.log("prevId:" , this.prevId);
+      console.log("prevId:", this.prevId);
       console.log("status, data:", status, data);
       if (status == 'success') {
         console.log("")
@@ -60,7 +63,7 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
           this.prevId = data.sessionId;
           this.initate_liveness_session(data);
         }
-        
+
       }
     })
 
@@ -116,7 +119,29 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
             const msg = `Attendance was marked successfully for ${user_name}!`;
             // this.toastrService.success(msg);
             (window as any).toast.show(msg, "info");
-            // this.router.navigate(["/"]);
+
+            const match = (Object.values(data.users_list)[0] as any).match(/^(.+?)\s+\((.+?)\)$/);
+
+            if (match) {
+              const empName = match[1];
+              const empId = match[2];
+              console.log("empName:", empName);
+              console.log("empId:", empId);
+              const fd = {
+                sessionId: this.session_id,
+                empId,
+                empName,
+                admin: this.cookieService.get("user_email")
+              }
+
+              this.attendanceService.livelogUpdate(fd).pipe(
+                // takeUntil(this.destroy$),
+              ).subscribe((res: any) => {
+                console.log("fd res: ", res);
+              })
+            } else {
+              console.log("Invalid input format");
+            }
             history.back();
           } else {
             this.loadingScreenText = 'Hit Start to start the liveness session';
@@ -134,7 +159,7 @@ export class FaceLivenessComponent implements OnInit, OnDestroy {
           console.log("err:", err);
           const user_name = data.users_list[Object.keys(data?.users_list || {})[0]] || "the user";
           this.modalHeaderText = "Could not mark attendance for the user"
-          
+
           const msg = `Could not mark attendence for ${user_name}!`;
           // this.toastrService.error(msg);
           (window as any).toast.show(msg, "error");

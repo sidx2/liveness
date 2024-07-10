@@ -24,6 +24,10 @@ export class AttendanceService {
     return this.http.post("/kioskapp/verifyFace", {image:base64image, token: this.cookieService.get("token")})
   }
 
+  livelogUpdate(fd) {
+    return this.http.post("http://172.16.108.38/liveLog/update", fd)
+  }
+
   markAttendenceUsingQR(data: any) {
     console.log("data:", data);
     let json;
